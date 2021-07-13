@@ -1,0 +1,85 @@
+---
+title: "Physiological Visualizatiions"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+library(tidyverse)
+library(cowplot)
+data <- read.csv("AD_DECODE_data.csv")
+
+ad <- data %>% 
+  filter(! is.na(Weight)) %>% 
+  mutate(sex = case_when(
+    sex == "F" ~ "Female",
+    sex == "M" ~ "Male"
+  )) %>% 
+  filter(risk_for_ad != 3)
+
+# data by genotypes
+e23 <- ad %>% 
+  filter(genotype == "APOE23") 
+e33 <- ad %>% 
+  filter(genotype == "APOE33")
+e34 <- ad %>% 
+  filter(genotype == "APOE34")
+
+# combining genotypes 
+geno_combined <- ad %>% 
+  mutate(Genotype = case_when(
+    genotype == "APOE23" | genotype == "APOE33" ~ "APOE3",
+    genotype == "APOE34" | genotype == "APOE44" ~ "APOE4"
+  )) 
+
+# separating by sex
+combo_f <- geno_combined %>% 
+  filter(sex == "Female")
+
+combo_m <- geno_combined %>% 
+  filter(sex == "Male")
+```
+
+```{r phys}
+ggplot(data = ad, aes(x = age, fill = genotype)) +
+  geom_histogram(bins = 10) +
+  scale_y_continuous(breaks=seq(20,80,10)) +
+  labs(x = "Age",
+   	y = "Number of participants",
+   	title = "Cohort physiological distribution",
+   	subtitle = "Age by genotype")
+
+ggplot(data = ad, aes(x = age, fill = sex)) +
+  geom_histogram(bins = 10) +
+  labs(x = "Age",
+   	y = "Number of participants",
+   	title = "Cohort physiological distribution",
+   	subtitle = "Age by sex")
+
+ggplot(ad, aes(x = age, fill = genotype)) +
+  geom_density(alpha = 1/3) +
+    labs(x = "Age",
+   	y = "Density",
+   	title = "Cohort physiological densities",
+   	subtitle = "Age by genotype")
+
+ggplot(geno_combined, aes(x = age, fill = Genotype)) +
+  geom_density(alpha = 1/3) +
+    labs(x = "Age",
+   	y = "Density",
+   	title = "Cohort physiological densities",
+   	subtitle = "Age by genotype")
+
+ggplot(ad, aes(x = age, fill = sex)) +
+  geom_density(alpha = 1/3) +
+    labs(x = "Age",
+   	y = "Density",
+   	title = "Cohort physiological densities",
+   	subtitle = "Age by sex")
+
+data <- data %>% 
+  filter(Risk != "")
+ggplot(data, aes(x = Risk)) +
+  geom_bar() +
+  labs(title = "Risk for AD in cohort")
+```
