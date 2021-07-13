@@ -1,0 +1,345 @@
+---
+title: "Initial AD DECODE graphs and analysis of variation"
+author: "Anna MacFarlane"
+date: "7/8/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(cowplot)
+ad <- read.csv("AD_DECODE_data.csv")
+
+ad <- ad %>% 
+  filter(! is.na(Weight)) %>% 
+  mutate(sex = case_when(
+    sex == "F" ~ "Female",
+    sex == "M" ~ "Male"
+  )) %>% 
+  filter(risk_for_ad != 3)
+
+# data by genotypes
+e23 <- ad %>% 
+  filter(genotype == "APOE23") 
+e33 <- ad %>% 
+  filter(genotype == "APOE33")
+e34 <- ad %>% 
+  filter(genotype == "APOE34")
+
+# combining genotypes 
+geno_combined <- ad %>% 
+  mutate(Genotype = case_when(
+    genotype == "APOE23" | genotype == "APOE33" ~ "APOE3",
+    genotype == "APOE34" | genotype == "APOE44" ~ "APOE4"
+  )) 
+
+# separating by sex
+combo_f <- geno_combined %>% 
+  filter(sex == "Female")
+
+combo_m <- geno_combined %>% 
+  filter(sex == "Male")
+```
+
+```{r sex, echo = FALSE}
+plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_TOTAL,
+                          color = Genotype,  fill = Genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  labs(title = "MOCA scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Total MOCA Score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none")
+
+plot4 <- ggplot(geno_combined, aes(age, MOCA_TOTAL, 
+                                   color = Genotype, fill = Genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm") +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Total MOCA Score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+```
+
+``` {r lm-practice, echo = FALSE}
+# linear model with interactions for combined genotypes
+moca_lm2 <- lm(MOCA_TOTAL ~ age*geno*sex, geno_combined)
+summary(moca_lm2)
+
+moca_lm_f <- lm(MOCA_TOTAL ~ age*geno, combo_f)
+summary(moca_lm_f)
+
+moca_lm_m <- lm(MOCA_TOTAL ~ age*geno, combo_m)
+summary(moca_lm_m)
+
+#require(gridExtra)
+plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_TOTAL,
+                          color = geno,  fill = geno)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  labs(title = "All",
+       x = "Age", y = "Total MOCA Score") +
+  theme_classic() +
+  background_grid(major = "xy", minor = "none")
+
+
+plot2<-ggplot(combo_f, aes(x = age, y = MOCA_TOTAL,
+                          color = geno, fill = geno)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  labs(title = "Females",
+       x = "Age", y = "Total MOCA Score") +
+  theme_classic() +
+  background_grid(major = "xy", minor = "none")
+
+plot3<-ggplot(combo_m, aes(x = age, y = MOCA_TOTAL,
+                          color = geno, fill = geno)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  labs(title = "Males",
+       x = "Age", y = "Total MOCA Score") +
+  theme_classic() +
+  background_grid(major = "xy", minor = "none")
+
+#grid.arrange(plot1,plot2,plot3, ncol=3)
+plot_grid(plot1,plot2,plot3, labels = "AUTO")
+
+plot4 <- ggplot(geno_combined, aes(age, MOCA_TOTAL, color = geno, fill = geno)) + 
+  geom_point() + facet_grid(. ~ sex) + stat_smooth(method = "lm") +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Total MOCA Score")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+   
+
+ggplot(geno_combined, aes(age, trailDiff, color = geno, fill = geno)) + 
+  geom_point() + facet_grid(. ~ sex) + stat_smooth(method = "lm") +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Trail Diff Score")
+
+ggplot(geno_combined, aes(age, trailA, color = geno, fill = geno)) + 
+  geom_point() + facet_grid(. ~ sex) + stat_smooth(method = "lm") +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Trail A Score")
+
+ggplot(geno_combined, aes(age, trailB, color = geno, fill = geno)) + 
+  geom_point() + facet_grid(. ~ sex) + stat_smooth(method = "lm") +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Trail B Score")
+```
+
+``` {r cohort, echo=FALSE}
+ad <- ad %>% 
+  filter(! is.na(MOCA_TOTAL)) %>% 
+  filter(! is.na(age))
+# linear model for total MOCA scores
+moca_lm <- lm(MOCA_TOTAL ~ age*genotype*sex, ad)
+summary(moca_lm)
+
+
+# adding fitted values and residuals to dataset for moca
+ad$fit_moca <- predict(moca_lm)
+ad$res_moca <- residuals(moca_lm)
+
+#newdata <- data.frame(ad, predict(model_quad, ad, 
+#                      interval="confidence"))
+
+ggplot(ad, aes(x = age, y = MOCA_TOTAL)) +
+  geom_point(aes(color = genotype))
+
+ggplot(ad, aes(x = age, y = MOCA_TOTAL, color = genotype)) +
+  geom_point() 
+
+ggplot(ad, aes(x = age, y = MOCA_TOTAL, color = genotype)) + 
+  geom_point() +
+  geom_smooth(formula = y ~ x, method = "lm")
+
+ggplot(ad, aes(x = fit_moca, y = res_moca, color = genotype)) +
+  geom_point() +
+  geom_smooth()
+
+
+ggplot(ad, aes(x = age, y = MOCA_TOTAL)) +
+  geom_point() +
+  stat_summary(fun.y="mean", geom="line") +
+  aes(color = genotype)
+
+```
+
+```{r other}
+
+ggplot(data = ad, aes(x = age, fill = genotype)) +
+  geom_histogram(bins = 10) +
+  scale_y_continuous(breaks=seq(20,80,10)) +
+  labs(x = "Age",
+   	y = "Number of participants",
+   	title = "Cohort physiological distribution",
+   	subtitle = "Age by genotype")
+
+ggplot(data = ad, aes(x = age, fill = sex)) +
+  geom_histogram(bins = 10) +
+  labs(x = "Age",
+   	y = "Number of participants",
+   	title = "Cohort physiological distribution",
+   	subtitle = "Age by sex")
+
+ad_odor <- ad %>% 
+  filter(! is.na(sex))
+
+ggplot(data = ad_odor, aes(x = factor(genotype), y = Recognized)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1, outlier.color = "black") +
+  geom_jitter(height = 0, width = 0.3, aes(color = sex)) +
+  labs(x = "Genotype",
+   	y = "Percent recognized that were included in first set",
+   	title = "Distributions of percent of odors recognized by genotype")
+```
+
+```{r benson, echo = FALSE}
+ggplot(data = ad, aes(x = factor(genotype), y = Im_BensonTotal)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1, outlier.color = "red") +
+  geom_jitter(height = 0, width = 0.3, aes(color = sex)) +
+  labs(x = "Genotype",
+   	y = "Immediate Verbatim Score",
+   	title = "Distributions of Immediate Total Benson scores by genotype")
+ 
+res.aov <- aov(Im_BensonTotal ~ genotype, data = ad)
+summary(res.aov)
+
+ggplot(data = ad, aes(x = factor(genotype), y = Delay_BensonTotal)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1, outlier.color = "red") +
+  geom_jitter(height = 0, width = 0.3, aes(color = sex)) +
+  labs(x = "Genotype",
+   	y = "Delayed Verbatim Score",
+   	title = "Distributions of Delayed Total Benson scores by genotype")
+ 
+res.aov <- aov(Delay_BensonTotal ~ genotype, data = ad)
+summary(res.aov)
+```
+
+``` {r craft-story, echo = FALSE}
+ggplot(data = ad, aes(x = factor(genotype), y = Delayed_verbatim)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1, outlier.color = "red") +
+  geom_jitter(height = 0, width = 0.3, aes(color = sex)) +
+  labs(x = "Genotype",
+   	y = "Delayed Verbatim Score",
+   	title = "Distributions of Delayed Verbatim scores by genotype")
+ 
+res.aov <- aov(Delayed_verbatim ~ genotype, data = ad)
+summary(res.aov)
+
+ggplot(data = e23, aes(x = factor(sex), y = Delayed_verbatim)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1, outlier.color = "red") +
+  geom_jitter(height = 0, width = 0.3) +
+  labs(x = "Sex",
+   	y = "Total Delayed Verbatim Score",
+   	title = "Distributions of Delayed Verbatim scores by genotype",
+   	subtitle = "APOE23")
+ 
+res2.aov <- aov(Delayed_verbatim ~ sex, data = e23)
+summary(res2.aov)
+
+ggplot(data = e33, aes(x = factor(sex), y = Delayed_verbatim)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1, outlier.color = "red") +
+  geom_jitter(height = 0, width = 0.3) +
+  labs(x = "Sex",
+   	y = "Total Delayed Verbatim Score",
+   	title = "Distributions of Delayed Verbatim scores by genotype",
+   	subtitle = "APOE33")
+ 
+res3.aov <- aov(Delayed_verbatim ~ sex, data = e33)
+summary(res3.aov)
+
+ggplot(data = e34, aes(x = factor(sex), y = Delayed_verbatim)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1, outlier.color = "red") +
+  geom_jitter(height = 0, width = 0.3) +
+  labs(x = "Sex",
+   	y = "Total Delayed Verbatim Score",
+   	title = "Distributions of Delayed Verbatim scores by genotype",
+   	subtitle = "APOE34")
+ 
+res4.aov <- aov(Delayed_verbatim ~ sex, data = e34)
+summary(res4.aov)
+```
+
+```{r moca, echo = FALSE}
+ggplot(data = ad, aes(x = factor(genotype), y = MOCA_TOTAL)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1, outlier.color = "red") +
+  geom_jitter(height = 0, width = 0.3, aes(color = sex)) +
+  labs(x = "Genotype",
+   	y = "Total MOCA Score",
+   	title = "Distributions of MOCA scores by genotype")
+ 
+res.aov <- aov(MOCA_TOTAL ~ genotype, data = ad)
+summary(res.aov)
+
+e23 <- ad %>% 
+  filter(genotype == "APOE23") 
+
+e33 <- ad %>% 
+  filter(genotype == "APOE33")
+
+e34 <- ad %>% 
+  filter(genotype == "APOE34")
+  
+ggplot(data = e23, aes(x = factor(sex), y = MOCA_TOTAL)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1, outlier.color = "red") +
+  geom_jitter(height = 0, width = 0.3) +
+  labs(x = "Sex",
+   	y = "Total MOCA Score",
+   	title = "Distributions of MOCA scores by genotype",
+   	subtitle = "APOE23")
+ 
+res2.aov <- aov(MOCA_TOTAL ~ sex, data = e23)
+summary(res2.aov)
+
+ggplot(data = e33, aes(x = factor(sex), y = MOCA_TOTAL)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1, outlier.color = "red") +
+  geom_jitter(height = 0, width = 0.3) +
+  labs(x = "Sex",
+   	y = "Total MOCA Score",
+   	title = "Distributions of MOCA scores by genotype",
+   	subtitle = "APOE33")
+ 
+res3.aov <- aov(MOCA_TOTAL ~ sex, data = e33)
+summary(res3.aov)
+
+ggplot(data = e34, aes(x = factor(sex), y = MOCA_TOTAL)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1, outlier.color = "red") +
+  geom_jitter(height = 0, width = 0.3) +
+  labs(x = "Sex",
+   	y = "Total MOCA Score",
+   	title = "Distributions of MOCA scores by genotype",
+   	subtitle = "APOE34")
+ 
+res4.aov <- aov(MOCA_TOTAL ~ sex, data = e34)
+summary(res4.aov)
+```
