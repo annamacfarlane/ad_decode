@@ -1,5 +1,5 @@
 ---
-title: "Linear models for raw scores"
+title: "Linear models with AD subject"
 output: pdf_document
 ---
 
@@ -61,9 +61,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = ufov1,
        subtitle = "Both males and females",
        x = "Age", y = "UFOV1 score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none") 
+  background_grid(major = "xy", minor = "none") +
   #annotate("point", x = 82, y = data, colour = "blue")
-  
+  annotate("point", x = data$age[49], y = data$ufov1[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, ufov1, 
                                    color = Genotype, fill = Genotype)) + 
@@ -101,7 +101,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = ufov2,
        subtitle = "Both males and females",
        x = "Age", y = "UFOV2 score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none") 
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$ufov2[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, ufov2, 
                                    color = Genotype, fill = Genotype)) + 
@@ -138,7 +139,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = ufov3,
        subtitle = "Both males and females",
        x = "Age", y = "UFOV3 score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$ufov3[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, ufov3, 
                                    color = Genotype, fill = Genotype)) + 
@@ -175,7 +177,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = animals,
        subtitle = "Both males and females",
        x = "Age", y = "Animal naming score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$animals[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, animals, 
                                    color = Genotype, fill = Genotype)) + 
@@ -212,7 +215,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = vegetables,
        subtitle = "Both males and females",
        x = "Age", y = "Vegetable naming score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$vegetables[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, vegetables, 
                                    color = Genotype, fill = Genotype)) + 
@@ -249,7 +253,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = f,
        subtitle = "Both males and females",
        x = "Age", y = "F words naming score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$f[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, f, 
                                    color = Genotype, fill = Genotype)) + 
@@ -288,7 +293,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = l,
        subtitle = "Both males and females",
        x = "Age", y = "L words naming score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$l[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, l, 
                                    color = Genotype, fill = Genotype)) + 
@@ -326,7 +332,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = trailA,
        subtitle = "Both males and females",
        x = "Age", y = "Trail A score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$trailA[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, trailA, 
                                    color = Genotype, fill = Genotype)) + 
@@ -363,7 +370,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = trailB,
        subtitle = "Both males and females",
        x = "Age", y = "Trail B score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$trailB[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, trailB, 
                                    color = Genotype, fill = Genotype)) + 
@@ -400,7 +408,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = trailDiff,
        subtitle = "Both males and females",
        x = "Age", y = "Trail scores difference") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$trailDiff[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, trailDiff, 
                                    color = Genotype, fill = Genotype)) + 
@@ -437,7 +446,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = fwd_total_correct,
        subtitle = "Both males and females",
        x = "Age", y = "Forward Total Correct scores") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$fwd_total_correct[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, fwd_total_correct, 
                                    color = Genotype, fill = Genotype)) + 
@@ -464,8 +474,8 @@ summary(btot_lm2)
 btot_lm_f <- lm(bckwds_total_correct ~ age*Genotype, combo_f)
 summary(btot_lm_f)
 
-fmax_lm_m <- lm(bckwds_total_correct ~ age*Genotype, combo_m)
-summary(btot_lm_m)
+lm_m <- lm(bckwds_total_correct ~ age*Genotype, combo_m)
+summary(lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = bckwds_total_correct,
                                  color = Genotype,  fill = Genotype)) + 
@@ -475,7 +485,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = bckwds_total_correct,
        subtitle = "Both males and females",
        x = "Age", y = "Backward Total Correct scores") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$bckwds_total_correct[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, bckwds_total_correct, 
                                    color = Genotype, fill = Genotype)) + 
@@ -512,7 +523,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = fwd_max_length,
        subtitle = "Both males and females",
        x = "Age", y = "Forward Max Length scores") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$fwd_max_length[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, fwd_max_length, 
                                    color = Genotype, fill = Genotype)) + 
@@ -550,7 +562,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = bckwds_max_length,
        subtitle = "Both males and females",
        x = "Age", y = "Backward Max Length scores") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$bckwds_max_length[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, bckwds_max_length, 
                                    color = Genotype, fill = Genotype)) + 
@@ -587,7 +600,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = RAVLT_FORGETTING,
        subtitle = "Both males and females",
        x = "Age", y = "RAVLT forgetting scores") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$RAVLT_FORGETTING[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, RAVLT_FORGETTING, 
                                    color = Genotype, fill = Genotype)) + 
@@ -623,7 +637,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = RAVLT_LEARNING,
        subtitle = "Both males and females",
        x = "Age", y = "RAVLT learning scores") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$RAVLT_LEARNING[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, RAVLT_LEARNING, 
                                    color = Genotype, fill = Genotype)) + 
@@ -659,7 +674,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = RAVLT_IMMEDIATE,
        subtitle = "Both males and females",
        x = "Age", y = "RAVLT Immediate scores") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$RAVLT_IMMEDIATE[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, RAVLT_IMMEDIATE, 
                                    color = Genotype, fill = Genotype)) + 
@@ -670,6 +686,43 @@ plot4 <- ggplot(geno_combined, aes(age, RAVLT_IMMEDIATE,
   panel_border() + 
   theme_bw()+
   labs(x = "Age", y = "RAVLT Immediate scores") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+```
+
+```{r ravlt-7, echo = FALSE}
+imravlt_lm2 <- lm(AVLT_Trial7 ~ age*Genotype*sex, geno_combined)
+summary(imravlt_lm2)
+
+imravlt_lm_f <- lm(AVLT_Trial7 ~ age*Genotype, combo_f)
+summary(imravlt_lm_f)
+
+imravlt_lm_m <- lm(AVLT_Trial7 ~ age*Genotype, combo_m)
+summary(imravlt_lm_m)
+
+plot1<-ggplot(geno_combined, aes(x = age, y = AVLT_Trial7,
+                          color = Genotype,  fill = Genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  labs(title = "AVLT Trial 7 (delayed) scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = " AVLT Trial 7 scores") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$AVLT_Trial7[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(geno_combined, aes(age, AVLT_Trial7, 
+                                   color = Genotype, fill = Genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm") +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "AVLT Trial 7 scores") +
   theme(legend.position="none")
 
 ggdraw() + 
@@ -696,7 +749,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Recognized,
        subtitle = "Both males and females",
        x = "Age", y = "Odor percent correctly recognized") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$Recognized[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, Recognized, 
                                    color = Genotype, fill = Genotype)) + 
@@ -732,7 +786,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = PrecentCorrectRecall,
        subtitle = "Both males and females",
        x = "Age", y = "Odor recognition percent correct recall") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$PrecentCorrectRecall[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, PrecentCorrectRecall, 
                                    color = Genotype, fill = Genotype)) + 
@@ -768,7 +823,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Delay_BensonTotal,
        subtitle = "Both males and females",
        x = "Age", y = "Total delayed Benson  score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$Delay_BensonTotal[49], colour = "blue", shape = 8)
+
 
 plot4 <- ggplot(geno_combined, aes(age, Delay_BensonTotal, 
                                    color = Genotype, fill = Genotype)) + 
@@ -804,7 +861,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Im_BensonTotal,
        subtitle = "Both males and females",
        x = "Age", y = "Total immediate Benson  score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$Im_BensonTotal[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, Im_BensonTotal, 
                                    color = Genotype, fill = Genotype)) + 
@@ -840,7 +898,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Delayed_verbatim,
        subtitle = "Both males and females",
        x = "Age", y = "Story delayed verbatim score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$Delayed_verbatim[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, Delayed_verbatim, 
                                    color = Genotype, fill = Genotype)) + 
@@ -876,7 +935,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Immediate_verbatim,
        subtitle = "Both males and females",
        x = "Age", y = "Story immediate verbatim score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$Immediate_verbatim[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, Immediate_verbatim, 
                                    color = Genotype, fill = Genotype)) + 
@@ -912,7 +972,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Attention_Digits,
        subtitle = "Both males and females",
        x = "Age", y = "MOCA attention digits score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$MOCA_Attention_Digits[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, MOCA_Attention_Digits, 
                                    color = Genotype, fill = Genotype)) + 
@@ -948,7 +1009,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Memory,
        subtitle = "Both males and females",
        x = "Age", y = "MOCA memory Score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$MOCA_Memory[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, MOCA_Memory, 
                                    color = Genotype, fill = Genotype)) + 
@@ -984,7 +1046,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Naming,
        subtitle = "Both males and females",
        x = "Age", y = "MOCA naming Score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$MOCA_Naming[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, MOCA_Naming, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1020,7 +1083,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Visuospatial,
        subtitle = "Both males and females",
        x = "Age", y = "MOCA visuospatial Score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$MOCA_Visuospatial[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, MOCA_Visuospatial, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1056,7 +1120,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_TOTAL,
        subtitle = "Both males and females",
        x = "Age", y = "Total MOCA Score") +
   theme_bw() +
-  background_grid(major = "xy", minor = "none")
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$MOCA_TOTAL[49], colour = "blue", shape = 8)
 
 plot4 <- ggplot(geno_combined, aes(age, MOCA_TOTAL, 
                                    color = Genotype, fill = Genotype)) + 
