@@ -44,15 +44,6 @@ combo_m <- geno_combined %>%
 ```
 
 ```{r ufov-1, echo = FALSE}
-lm <- lm(ufov1 ~ age*Genotype*sex, geno_combined)
-summary(lm)
-
-lm_f <- lm(ufov1 ~ age*Genotype, combo_f)
-summary(lm_f)
-
-lm_m <- lm(ufov1 ~ age*Genotype, combo_m)
-summary(lm_m)
-
 plot1<-ggplot(geno_combined, aes(x = age, y = ufov1,
                                  color = Genotype,  fill = Genotype)) + 
   geom_point(aes(shape = Risk)) +
@@ -79,19 +70,20 @@ plot4 <- ggplot(geno_combined, aes(age, ufov1,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+lm <- lm(ufov1 ~ age*Genotype*sex, geno_combined)
+summary(lm)
+
+lm_f <- lm(ufov1 ~ age*Genotype, combo_f)
+summary(lm_f)
+
+lm_m <- lm(ufov1 ~ age*Genotype, combo_m)
+summary(lm_m)
 ```
 
 
 
 ```{r ufov-2, echo = FALSE}
-lm <- lm(ufov2 ~ age*Genotype*sex, geno_combined)
-summary(lm)
-
-lm_f <- lm(ufov2 ~ age*Genotype, combo_f)
-summary(lm_f)
-
-lm_m <- lm(ufov2 ~ age*Genotype, combo_m)
-summary(lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = ufov2,
                                  color = Genotype,  fill = Genotype)) + 
@@ -117,18 +109,20 @@ plot4 <- ggplot(geno_combined, aes(age, ufov2,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+lm <- lm(ufov2 ~ age*Genotype*sex, geno_combined)
+summary(lm)
+
+lm_f <- lm(ufov2 ~ age*Genotype, combo_f)
+summary(lm_f)
+
+lm_m <- lm(ufov2 ~ age*Genotype, combo_m)
+summary(lm_m)
+
 ```
 
 
 ```{r ufov-3, echo = FALSE}
-lm <- lm(ufov3 ~ age*Genotype*sex, geno_combined)
-summary(lm)
-
-lm_f <- lm(ufov3 ~ age*Genotype, combo_f)
-summary(lm_f)
-
-lm_m <- lm(ufov3 ~ age*Genotype, combo_m)
-summary(lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = ufov3,
                                  color = Genotype,  fill = Genotype)) + 
@@ -154,18 +148,19 @@ plot4 <- ggplot(geno_combined, aes(age, ufov3,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+lm <- lm(ufov3 ~ age*Genotype*sex, geno_combined)
+summary(lm)
+
+lm_f <- lm(ufov3 ~ age*Genotype, combo_f)
+summary(lm_f)
+
+lm_m <- lm(ufov3 ~ age*Genotype, combo_m)
+summary(lm_m)
 ```
 
 
 ```{r animals-norepeats, echo = FALSE}
-lm <- lm(animals ~ age*Genotype*sex, geno_combined)
-summary(lm)
-
-lm_f <- lm(animals ~ age*Genotype, combo_f)
-summary(lm_f)
-
-lm_m <- lm(animals ~ age*Genotype, combo_m)
-summary(lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = animals,
                                  color = Genotype,  fill = Genotype)) + 
@@ -191,18 +186,19 @@ plot4 <- ggplot(geno_combined, aes(age, animals,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+lm <- lm(animals ~ age*Genotype*sex, geno_combined)
+summary(lm)
+
+lm_f <- lm(animals ~ age*Genotype, combo_f)
+summary(lm_f)
+
+lm_m <- lm(animals ~ age*Genotype, combo_m)
+summary(lm_m)
 ```
 
 
 ```{r vegetables-norepeats, echo = FALSE}
-lm <- lm(vegetables ~ age*Genotype*sex, geno_combined)
-summary(lm)
-
-lm_f <- lm(vegetables ~ age*Genotype, combo_f)
-summary(lm_f)
-
-lm_m <- lm(vegetables ~ age*Genotype, combo_m)
-summary(lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = vegetables,
                                  color = Genotype,  fill = Genotype)) + 
@@ -228,18 +224,18 @@ plot4 <- ggplot(geno_combined, aes(age, vegetables,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+lm <- lm(vegetables ~ age*Genotype*sex, geno_combined)
+summary(lm)
+
+lm_f <- lm(vegetables ~ age*Genotype, combo_f)
+summary(lm_f)
+
+lm_m <- lm(vegetables ~ age*Genotype, combo_m)
+summary(lm_m)
 ```
 
 ```{r f-norepeats, echo = FALSE}
-
-lm <- lm(f ~ age*Genotype*sex, geno_combined)
-summary(lm)
-
-lm_f <- lm(f ~ age*Genotype, combo_f)
-summary(lm_f)
-
-lm_m <- lm(f ~ age*Genotype, combo_m)
-summary(lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = f,
                                  color = Genotype,  fill = Genotype)) + 
@@ -265,21 +261,21 @@ plot4 <- ggplot(geno_combined, aes(age, f,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+lm <- lm(f ~ age*Genotype*sex, geno_combined)
+summary(lm)
+
+lm_f <- lm(f ~ age*Genotype, combo_f)
+summary(lm_f)
+
+lm_m <- lm(f ~ age*Genotype, combo_m)
+summary(lm_m)
 ```
 
 
 
 
 ```{r l-norepeats, echo = FALSE}
-lm <- lm(l ~ age*Genotype*sex, geno_combined)
-summary(lm)
-
-lm_f <- lm(l ~ age*Genotype, combo_f)
-summary(lm_f)
-
-lm_m <- lm(l ~ age*Genotype, combo_m)
-summary(lm_m)
-
 plot1<-ggplot(geno_combined, aes(x = age, y = l,
                                  color = Genotype,  fill = Genotype)) + 
   geom_point(aes(shape = Risk)) +
@@ -303,20 +299,22 @@ plot4 <- ggplot(geno_combined, aes(age, l,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot4, 0, 0, 1, .5)
+
+lm <- lm(l ~ age*Genotype*sex, geno_combined)
+summary(lm)
+
+lm_f <- lm(l ~ age*Genotype, combo_f)
+summary(lm_f)
+
+lm_m <- lm(l ~ age*Genotype, combo_m)
+summary(lm_m)
+
 ```
 
 
 
 ```{r trail-A, echo = FALSE}
-lm <- lm(trailA ~ age*Genotype*sex, geno_combined)
-summary(lm)
-
-lm_f <- lm(trailA ~ age*Genotype, combo_f)
-summary(lm_f)
-
-lm_m <- lm(trailA ~ age*Genotype, combo_m)
-summary(lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = trailA,
                                  color = Genotype,  fill = Genotype)) + 
@@ -342,18 +340,19 @@ plot4 <- ggplot(geno_combined, aes(age, trailA,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+lm <- lm(trailA ~ age*Genotype*sex, geno_combined)
+summary(lm)
+
+lm_f <- lm(trailA ~ age*Genotype, combo_f)
+summary(lm_f)
+
+lm_m <- lm(trailA ~ age*Genotype, combo_m)
+summary(lm_m)
 ```
 
 
 ```{r trail-B, echo = FALSE}
-lm <- lm(trailB ~ age*Genotype*sex, geno_combined)
-summary(lm)
-
-lm_f <- lm(trailB ~ age*Genotype, combo_f)
-summary(lm_f)
-
-lm_m <- lm(trailB ~ age*Genotype, combo_m)
-summary(lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = trailB,
                                  color = Genotype,  fill = Genotype)) + 
@@ -379,19 +378,19 @@ plot4 <- ggplot(geno_combined, aes(age, trailB,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+lm <- lm(trailB ~ age*Genotype*sex, geno_combined)
+summary(lm)
+
+lm_f <- lm(trailB ~ age*Genotype, combo_f)
+summary(lm_f)
+
+lm_m <- lm(trailB ~ age*Genotype, combo_m)
+summary(lm_m)
 ```
 
 
 ```{r trail-differ, echo = FALSE}
-lm <- lm(trailDiff ~ age*Genotype*sex, geno_combined)
-summary(lm)
-
-lm_f <- lm(trailDiff ~ age*Genotype, combo_f)
-summary(lm_f)
-
-lm_m <- lm(trailDiff ~ age*Genotype, combo_m)
-summary(lm_m)
-
 plot1<-ggplot(geno_combined, aes(x = age, y = trailDiff,
                                  color = Genotype,  fill = Genotype)) + 
   geom_point(aes(shape = Risk)) +
@@ -416,18 +415,20 @@ plot4 <- ggplot(geno_combined, aes(age, trailDiff,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+lm <- lm(trailDiff ~ age*Genotype*sex, geno_combined)
+summary(lm)
+
+lm_f <- lm(trailDiff ~ age*Genotype, combo_f)
+summary(lm_f)
+
+lm_m <- lm(trailDiff ~ age*Genotype, combo_m)
+summary(lm_m)
+
 ```
 
 
 ```{r number-spanforwards, echo = FALSE}
-lm <- lm(fwd_total_correct ~ age*Genotype*sex, geno_combined)
-summary(lm)
-
-lm_f <- lm(fwd_total_correct ~ age*Genotype, combo_f)
-summary(lm_f)
-
-lm_m <- lm(fwd_total_correct ~ age*Genotype, combo_m)
-summary(lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = fwd_total_correct,
                                  color = Genotype,  fill = Genotype)) + 
@@ -453,19 +454,19 @@ plot4 <- ggplot(geno_combined, aes(age, fwd_total_correct,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+lm <- lm(fwd_total_correct ~ age*Genotype*sex, geno_combined)
+summary(lm)
+
+lm_f <- lm(fwd_total_correct ~ age*Genotype, combo_f)
+summary(lm_f)
+
+lm_m <- lm(fwd_total_correct ~ age*Genotype, combo_m)
+summary(lm_m)
 ```
 
 
 ```{r number-spanbackwards, echo = FALSE}
-
-btot_lm2 <- lm(bckwds_total_correct ~ age*Genotype*sex, geno_combined)
-summary(btot_lm2)
-
-btot_lm_f <- lm(bckwds_total_correct ~ age*Genotype, combo_f)
-summary(btot_lm_f)
-
-fmax_lm_m <- lm(bckwds_total_correct ~ age*Genotype, combo_m)
-summary(btot_lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = bckwds_total_correct,
                                  color = Genotype,  fill = Genotype)) + 
@@ -491,18 +492,20 @@ plot4 <- ggplot(geno_combined, aes(age, bckwds_total_correct,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+btot_lm2 <- lm(bckwds_total_correct ~ age*Genotype*sex, geno_combined)
+summary(btot_lm2)
+
+btot_lm_f <- lm(bckwds_total_correct ~ age*Genotype, combo_f)
+summary(btot_lm_f)
+
+fmax_lm_m <- lm(bckwds_total_correct ~ age*Genotype, combo_m)
+summary(btot_lm_m)
+
 ```
 
 
 ```{r number-spanfwdsmax, echo = FALSE}
-fmax_lm2 <- lm(fwd_max_length ~ age*Genotype*sex, geno_combined)
-summary(fmax_lm2)
-
-fmax_lm_f <- lm(fwd_max_length ~ age*Genotype, combo_f)
-summary(fmax_lm_f)
-
-fmax_lm_m <- lm(fwd_max_length ~ age*Genotype, combo_m)
-summary(fmax_lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = fwd_max_length,
                                  color = Genotype,  fill = Genotype)) + 
@@ -528,19 +531,19 @@ plot4 <- ggplot(geno_combined, aes(age, fwd_max_length,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+fmax_lm2 <- lm(fwd_max_length ~ age*Genotype*sex, geno_combined)
+summary(fmax_lm2)
+
+fmax_lm_f <- lm(fwd_max_length ~ age*Genotype, combo_f)
+summary(fmax_lm_f)
+
+fmax_lm_m <- lm(fwd_max_length ~ age*Genotype, combo_m)
+summary(fmax_lm_m)
 ```
 
 
 ```{r number-spanbckwdsmax, echo = FALSE}
-
-bmax_lm2 <- lm(bckwds_max_length ~ age*Genotype*sex, geno_combined)
-summary(bmax_lm2)
-
-bmax_lm_f <- lm(bckwds_max_length ~ age*Genotype, combo_f)
-summary(bmax_lm_f)
-
-bmax_lm_m <- lm(bckwds_max_length ~ age*Genotype, combo_m)
-summary(bmax_lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = bckwds_max_length,
                                  color = Genotype,  fill = Genotype)) + 
@@ -566,19 +569,18 @@ plot4 <- ggplot(geno_combined, aes(age, bckwds_max_length,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+bmax_lm2 <- lm(bckwds_max_length ~ age*Genotype*sex, geno_combined)
+summary(bmax_lm2)
+
+bmax_lm_f <- lm(bckwds_max_length ~ age*Genotype, combo_f)
+summary(bmax_lm_f)
+
+bmax_lm_m <- lm(bckwds_max_length ~ age*Genotype, combo_m)
+summary(bmax_lm_m)
 ```
 
 ```{r ravlt-forg, echo = FALSE}
-fravlt_lm2 <- lm(RAVLT_FORGETTING ~ age*Genotype*sex, geno_combined)
-summary(fravlt_lm2)
-
-fravlt_lm_f <- lm(RAVLT_FORGETTING ~ age*Genotype, combo_f)
-summary(fravlt_lm_f)
-
-fravlt_lm_m <- lm(RAVLT_FORGETTING ~ age*Genotype, combo_m)
-summary(fravlt_lm_m)
-
-
 plot1<-ggplot(geno_combined, aes(x = age, y = RAVLT_FORGETTING,
                           color = Genotype,  fill = Genotype)) + 
   geom_point(aes(shape = Risk)) +
@@ -603,17 +605,18 @@ plot4 <- ggplot(geno_combined, aes(age, RAVLT_FORGETTING,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+fravlt_lm2 <- lm(RAVLT_FORGETTING ~ age*Genotype*sex, geno_combined)
+summary(fravlt_lm2)
+
+fravlt_lm_f <- lm(RAVLT_FORGETTING ~ age*Genotype, combo_f)
+summary(fravlt_lm_f)
+
+fravlt_lm_m <- lm(RAVLT_FORGETTING ~ age*Genotype, combo_m)
+summary(fravlt_lm_m)
 ```
 
 ```{r ravlt-learn, echo = FALSE}
-lravlt_lm2 <- lm(RAVLT_LEARNING ~ age*Genotype*sex, geno_combined)
-summary(lravlt_lm2)
-
-lravlt_lm_f <- lm(RAVLT_LEARNING ~ age*Genotype, combo_f)
-summary(lravlt_lm_f)
-
-lravlt_lm_m <- lm(RAVLT_LEARNING ~ age*Genotype, combo_m)
-summary(lravlt_lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = RAVLT_LEARNING,
                           color = Genotype,  fill = Genotype)) + 
@@ -639,17 +642,18 @@ plot4 <- ggplot(geno_combined, aes(age, RAVLT_LEARNING,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+lravlt_lm2 <- lm(RAVLT_LEARNING ~ age*Genotype*sex, geno_combined)
+summary(lravlt_lm2)
+
+lravlt_lm_f <- lm(RAVLT_LEARNING ~ age*Genotype, combo_f)
+summary(lravlt_lm_f)
+
+lravlt_lm_m <- lm(RAVLT_LEARNING ~ age*Genotype, combo_m)
+summary(lravlt_lm_m)
 ```
 
 ```{r ravlt-imm, echo = FALSE}
-imravlt_lm2 <- lm(RAVLT_IMMEDIATE ~ age*Genotype*sex, geno_combined)
-summary(imravlt_lm2)
-
-imravlt_lm_f <- lm(RAVLT_IMMEDIATE ~ age*Genotype, combo_f)
-summary(imravlt_lm_f)
-
-imravlt_lm_m <- lm(RAVLT_IMMEDIATE ~ age*Genotype, combo_m)
-summary(imravlt_lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = RAVLT_IMMEDIATE,
                           color = Genotype,  fill = Genotype)) + 
@@ -675,18 +679,18 @@ plot4 <- ggplot(geno_combined, aes(age, RAVLT_IMMEDIATE,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+imravlt_lm2 <- lm(RAVLT_IMMEDIATE ~ age*Genotype*sex, geno_combined)
+summary(imravlt_lm2)
+
+imravlt_lm_f <- lm(RAVLT_IMMEDIATE ~ age*Genotype, combo_f)
+summary(imravlt_lm_f)
+
+imravlt_lm_m <- lm(RAVLT_IMMEDIATE ~ age*Genotype, combo_m)
+summary(imravlt_lm_m)
 ```
 
 ```{r odor-rec, echo = FALSE}
-
-odor2_lm2 <- lm(Recognized ~ age*Genotype*sex, geno_combined)
-summary(odor2_lm2)
-
-odor2_lm_f <- lm(Recognized ~ age*Genotype, combo_f)
-summary(odor2_lm_f)
-
-odor2_lm_m <- lm(Recognized ~ age*Genotype, combo_m)
-summary(odor2_lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = Recognized,
                           color = Genotype,  fill = Genotype)) + 
@@ -712,18 +716,18 @@ plot4 <- ggplot(geno_combined, aes(age, Recognized,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+odor2_lm2 <- lm(Recognized ~ age*Genotype*sex, geno_combined)
+summary(odor2_lm2)
+
+odor2_lm_f <- lm(Recognized ~ age*Genotype, combo_f)
+summary(odor2_lm_f)
+
+odor2_lm_m <- lm(Recognized ~ age*Genotype, combo_m)
+summary(odor2_lm_m)
 ```
 
 ```{r odor-precent, echo = FALSE}
-odor1_lm2 <- lm(PrecentCorrectRecall ~ age*Genotype*sex, geno_combined)
-summary(odor1_lm2)
-
-odor1_lm_f <- lm(PrecentCorrectRecall ~ age*Genotype, combo_f)
-summary(odor1_lm_f)
-
-odor1_lm_m <- lm(PrecentCorrectRecall ~ age*Genotype, combo_m)
-summary(odor1_lm_m)
-
 plot1<-ggplot(geno_combined, aes(x = age, y = PrecentCorrectRecall,
                           color = Genotype,  fill = Genotype)) + 
   geom_point(aes(shape = Risk)) +
@@ -748,17 +752,19 @@ plot4 <- ggplot(geno_combined, aes(age, PrecentCorrectRecall,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+odor1_lm2 <- lm(PrecentCorrectRecall ~ age*Genotype*sex, geno_combined)
+summary(odor1_lm2)
+
+odor1_lm_f <- lm(PrecentCorrectRecall ~ age*Genotype, combo_f)
+summary(odor1_lm_f)
+
+odor1_lm_m <- lm(PrecentCorrectRecall ~ age*Genotype, combo_m)
+summary(odor1_lm_m)
+
 ```
 
 ```{r delay-benson, echo = FALSE}
-dbenson_lm2 <- lm(Delay_BensonTotal ~ age*Genotype*sex, geno_combined)
-summary(dbenson_lm2)
-
-dbenson_lm_f <- lm(Delay_BensonTotal ~ age*Genotype, combo_f)
-summary(dbenson_lm_f)
-
-dbenson_lm_m <- lm(Delay_BensonTotal ~ age*Genotype, combo_m)
-summary(dbenson_lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = Delay_BensonTotal,
                           color = Genotype,  fill = Genotype)) + 
@@ -784,17 +790,18 @@ plot4 <- ggplot(geno_combined, aes(age, Delay_BensonTotal,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+dbenson_lm2 <- lm(Delay_BensonTotal ~ age*Genotype*sex, geno_combined)
+summary(dbenson_lm2)
+
+dbenson_lm_f <- lm(Delay_BensonTotal ~ age*Genotype, combo_f)
+summary(dbenson_lm_f)
+
+dbenson_lm_m <- lm(Delay_BensonTotal ~ age*Genotype, combo_m)
+summary(dbenson_lm_m)
 ```
 
 ```{r imm-benson, echo = FALSE}
-imbenson_lm2 <- lm(Im_BensonTotal ~ age*Genotype*sex, geno_combined)
-summary(imbenson_lm2)
-
-imbenson_lm_f <- lm(Im_BensonTotal ~ age*Genotype, combo_f)
-summary(imbenson_lm_f)
-
-imbenson_lm_m <- lm(Im_BensonTotal ~ age*Genotype, combo_m)
-summary(imbenson_lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = Im_BensonTotal,
                           color = Genotype,  fill = Genotype)) + 
@@ -820,17 +827,18 @@ plot4 <- ggplot(geno_combined, aes(age, Im_BensonTotal,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+imbenson_lm2 <- lm(Im_BensonTotal ~ age*Genotype*sex, geno_combined)
+summary(imbenson_lm2)
+
+imbenson_lm_f <- lm(Im_BensonTotal ~ age*Genotype, combo_f)
+summary(imbenson_lm_f)
+
+imbenson_lm_m <- lm(Im_BensonTotal ~ age*Genotype, combo_m)
+summary(imbenson_lm_m)
 ```
 
 ```{r story-delay, echo = FALSE}
-dstory_lm2 <- lm(Delayed_verbatim ~ age*Genotype*sex, geno_combined)
-summary(dstory_lm2)
-
-dstory_lm_f <- lm(Delayed_verbatim ~ age*Genotype, combo_f)
-summary(dstory_lm_f)
-
-dstory_lm_m <- lm(Delayed_verbatim ~ age*Genotype, combo_m)
-summary(dstory_lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = Delayed_verbatim,
                           color = Genotype,  fill = Genotype)) + 
@@ -856,17 +864,18 @@ plot4 <- ggplot(geno_combined, aes(age, Delayed_verbatim,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+dstory_lm2 <- lm(Delayed_verbatim ~ age*Genotype*sex, geno_combined)
+summary(dstory_lm2)
+
+dstory_lm_f <- lm(Delayed_verbatim ~ age*Genotype, combo_f)
+summary(dstory_lm_f)
+
+dstory_lm_m <- lm(Delayed_verbatim ~ age*Genotype, combo_m)
+summary(dstory_lm_m)
 ```
 
 ```{r story-imm, echo = FALSE}
-istory_lm2 <- lm(Immediate_verbatim ~ age*Genotype*sex, geno_combined)
-summary(istory_lm2)
-
-istory_lm_f <- lm(Immediate_verbatim ~ age*Genotype, combo_f)
-summary(istory_lm_f)
-
-istory_lm_m <- lm(Immediate_verbatim ~ age*Genotype, combo_m)
-summary(istory_lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = Immediate_verbatim,
                           color = Genotype,  fill = Genotype)) + 
@@ -892,17 +901,18 @@ plot4 <- ggplot(geno_combined, aes(age, Immediate_verbatim,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+istory_lm2 <- lm(Immediate_verbatim ~ age*Genotype*sex, geno_combined)
+summary(istory_lm2)
+
+istory_lm_f <- lm(Immediate_verbatim ~ age*Genotype, combo_f)
+summary(istory_lm_f)
+
+istory_lm_m <- lm(Immediate_verbatim ~ age*Genotype, combo_m)
+summary(istory_lm_m)
 ```
 
 ```{r moca-attn, echo = FALSE}
-amoca_lm2 <- lm(MOCA_Attention_Digits ~ age*Genotype*sex, geno_combined)
-summary(amoca_lm2)
-
-amoca_lm_f <- lm(MOCA_Attention_Digits ~ age*Genotype, combo_f)
-summary(amoca_lm_f)
-
-amoca_lm_m <- lm(MOCA_Attention_Digits ~ age*Genotype, combo_m)
-summary(amoca_lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Attention_Digits,
                           color = Genotype,  fill = Genotype)) + 
@@ -928,17 +938,18 @@ plot4 <- ggplot(geno_combined, aes(age, MOCA_Attention_Digits,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+amoca_lm2 <- lm(MOCA_Attention_Digits ~ age*Genotype*sex, geno_combined)
+summary(amoca_lm2)
+
+amoca_lm_f <- lm(MOCA_Attention_Digits ~ age*Genotype, combo_f)
+summary(amoca_lm_f)
+
+amoca_lm_m <- lm(MOCA_Attention_Digits ~ age*Genotype, combo_m)
+summary(amoca_lm_m)
 ```
 
 ```{r moca-mem, echo = FALSE}
-mmoca_lm2 <- lm(MOCA_Memory ~ age*Genotype*sex, geno_combined)
-summary(mmoca_lm2)
-
-mmoca_lm_f <- lm(MOCA_Memory ~ age*Genotype, combo_f)
-summary(mmoca_lm_f)
-
-mmoca_lm_m <- lm(MOCA_Memory ~ age*Genotype, combo_m)
-summary(mmoca_lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Memory,
                           color = Genotype,  fill = Genotype)) + 
@@ -964,18 +975,18 @@ plot4 <- ggplot(geno_combined, aes(age, MOCA_Memory,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+mmoca_lm2 <- lm(MOCA_Memory ~ age*Genotype*sex, geno_combined)
+summary(mmoca_lm2)
+
+mmoca_lm_f <- lm(MOCA_Memory ~ age*Genotype, combo_f)
+summary(mmoca_lm_f)
+
+mmoca_lm_m <- lm(MOCA_Memory ~ age*Genotype, combo_m)
+summary(mmoca_lm_m)
 ```
 
 ```{r moca-name, echo = FALSE}
-nmoca_lm2 <- lm(MOCA_Naming ~ age*Genotype*sex, geno_combined)
-summary(nmoca_lm2)
-
-nmoca_lm_f <- lm(MOCA_Naming ~ age*Genotype, combo_f)
-summary(nmoca_lm_f)
-
-nmoca_lm_m <- lm(MOCA_Naming ~ age*Genotype, combo_m)
-summary(nmoca_lm_m)
-
 plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Naming,
                           color = Genotype,  fill = Genotype)) + 
   geom_point(aes(shape = Risk)) +
@@ -1000,17 +1011,19 @@ plot4 <- ggplot(geno_combined, aes(age, MOCA_Naming,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+nmoca_lm2 <- lm(MOCA_Naming ~ age*Genotype*sex, geno_combined)
+summary(nmoca_lm2)
+
+nmoca_lm_f <- lm(MOCA_Naming ~ age*Genotype, combo_f)
+summary(nmoca_lm_f)
+
+nmoca_lm_m <- lm(MOCA_Naming ~ age*Genotype, combo_m)
+summary(nmoca_lm_m)
+
 ```
 
 ```{r moca-vis, echo = FALSE}
-vmoca_lm2 <- lm(MOCA_Visuospatial ~ age*Genotype*sex, geno_combined)
-summary(vmoca_lm2)
-
-vmoca_lm_f <- lm(MOCA_Visuospatial ~ age*Genotype, combo_f)
-summary(vmoca_lm_f)
-
-vmoca_lm_m <- lm(MOCA_Visuospatial ~ age*Genotype, combo_m)
-summary(vmoca_lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Visuospatial,
                           color = Genotype,  fill = Genotype)) + 
@@ -1036,17 +1049,18 @@ plot4 <- ggplot(geno_combined, aes(age, MOCA_Visuospatial,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+vmoca_lm2 <- lm(MOCA_Visuospatial ~ age*Genotype*sex, geno_combined)
+summary(vmoca_lm2)
+
+vmoca_lm_f <- lm(MOCA_Visuospatial ~ age*Genotype, combo_f)
+summary(vmoca_lm_f)
+
+vmoca_lm_m <- lm(MOCA_Visuospatial ~ age*Genotype, combo_m)
+summary(vmoca_lm_m)
 ```
 
 ```{r moca-total, echo = FALSE}
-moca_lm2 <- lm(MOCA_TOTAL ~ age*Genotype*sex, geno_combined)
-summary(moca_lm2)
-
-moca_lm_f <- lm(MOCA_TOTAL ~ age*Genotype, combo_f)
-summary(moca_lm_f)
-
-moca_lm_m <- lm(MOCA_TOTAL ~ age*Genotype, combo_m)
-summary(moca_lm_m)
 
 plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_TOTAL,
                           color = Genotype,  fill = Genotype)) + 
@@ -1072,6 +1086,15 @@ plot4 <- ggplot(geno_combined, aes(age, MOCA_TOTAL,
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot4, 0, 0, 1, .5) 
+
+moca_lm2 <- lm(MOCA_TOTAL ~ age*Genotype*sex, geno_combined)
+summary(moca_lm2)
+
+moca_lm_f <- lm(MOCA_TOTAL ~ age*Genotype, combo_f)
+summary(moca_lm_f)
+
+moca_lm_m <- lm(MOCA_TOTAL ~ age*Genotype, combo_m)
+summary(moca_lm_m)
 ```
 
 

@@ -4,9 +4,10 @@ output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, echo = FALSE)
 library(tidyverse)
 library(cowplot)
+library(scales)
 data <- read.csv("AD_DECODE_data.csv")
 
 ad <- data %>% 
@@ -38,6 +39,144 @@ combo_f <- geno_combined %>%
 
 combo_m <- geno_combined %>% 
   filter(sex == "Male")
+
+```
+
+``` {r bmi}
+plot1 <- ggplot(geno_combined, aes(x = age, y = BMI,
+                          color = Genotype,  fill = Genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  theme_bw() 
+
+plot4 <- ggplot(geno_combined, aes(age, BMI, 
+                                   color = Genotype, fill = Genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm") +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw() +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+lm <- lm(BMI ~ age*Genotype*sex, geno_combined)
+summary(lm)
+lm_f <- lm(BMI ~ age*Genotype, combo_f)
+summary(lm_f)
+lm_m <- lm(BMI ~ age*Genotype, combo_m)
+summary(lm_m)
+
+```
+
+```{r bp}
+plot <- ggplot(geno_combined, aes(Systolic, Diastolic,
+                          color = Genotype, fill = Genotype)) +
+  geom_point(aes(size = age)) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  theme_bw()
+
+plot2 <- ggplot(geno_combined, aes(Systolic, Diastolic, 
+                                   color = Genotype, fill = Genotype)) + 
+  geom_point(aes(size = age)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm") +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw() +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot, 0, .5, 1, .5) +
+  draw_plot(plot2, 0, 0, 1, .5) 
+
+plot1 <- ggplot(geno_combined, aes(x = age, y = Systolic,
+                          color = Genotype,  fill = Genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  theme_bw() 
+
+plot4 <- ggplot(geno_combined, aes(age, Systolic, 
+                                   color = Genotype, fill = Genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm") +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw() +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+lm <- lm(Systolic ~ age*Genotype*sex, geno_combined)
+summary(lm)
+lm_f <- lm(Systolic ~ age*Genotype, combo_f)
+summary(lm_f)
+lm_m <- lm(Systolic ~ age*Genotype, combo_m)
+summary(lm_m)
+
+plot1 <- ggplot(geno_combined, aes(x = age, y = Diastolic,
+                          color = Genotype,  fill = Genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  theme_bw() 
+
+plot4 <- ggplot(geno_combined, aes(age, Diastolic, 
+                                   color = Genotype, fill = Genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm") +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw() +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+lm <- lm(Diastolic ~ age*Genotype*sex, geno_combined)
+summary(lm)
+lm_f <- lm(Diastolic ~ age*Genotype, combo_f)
+summary(lm_f)
+lm_m <- lm(Diastolic ~ age*Genotype, combo_m)
+summary(lm_m)
+```
+
+``` {r pulse}
+
+plot1 <- ggplot(geno_combined, aes(x = age, y = Pulse,
+                          color = Genotype,  fill = Genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  theme_bw() 
+
+plot4 <- ggplot(geno_combined, aes(age, Pulse, 
+                                   color = Genotype, fill = Genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm") +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw() +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5)
+
+lm <- lm(Pulse ~ age*Genotype*sex, geno_combined)
+summary(lm)
+lm_f <- lm(Pulse ~ age*Genotype, combo_f)
+summary(lm_f)
+lm_m <- lm(Pulse ~ age*Genotype, combo_m)
+summary(lm_m)
+
 ```
 
 ```{r phys}

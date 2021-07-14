@@ -1,0 +1,615 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Initial AD DECODE graphs and analysis of variation},
+  pdfauthor={Anna MacFarlane},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Initial AD DECODE graphs and analysis of variation}
+\author{Anna MacFarlane}
+\date{7/8/2021}
+
+\begin{document}
+\maketitle
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = MOCA_TOTAL ~ age * geno * sex, data = geno_combined)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.3382 -1.4054  0.7695  2.0000  3.2864 
+## 
+## Coefficients:
+##                         Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)           29.0735294  3.3564874   8.662 2.49e-10 ***
+## age                   -0.0294118  0.0645021  -0.456    0.651    
+## genoAPOE4              1.6245010  4.6427979   0.350    0.728    
+## sexMale               -0.2218228  4.7185237  -0.047    0.963    
+## age:genoAPOE4         -0.0258623  0.0964326  -0.268    0.790    
+## age:sexMale            0.0001221  0.0878934   0.001    0.999    
+## genoAPOE4:sexMale      4.9460929  7.0455035   0.702    0.487    
+## age:genoAPOE4:sexMale -0.1127712  0.1372736  -0.822    0.417    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.651 on 36 degrees of freedom
+##   (7 observations deleted due to missingness)
+## Multiple R-squared:  0.1752, Adjusted R-squared:  0.01477 
+## F-statistic: 1.092 on 7 and 36 DF,  p-value: 0.3888
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = MOCA_TOTAL ~ age * geno, data = combo_f)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.3382 -1.2399  0.9412  1.6775  2.7206 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   29.07353    3.12680   9.298 4.46e-09 ***
+## age           -0.02941    0.06009  -0.489    0.629    
+## genoAPOE4      1.62450    4.32509   0.376    0.711    
+## age:genoAPOE4 -0.02586    0.08983  -0.288    0.776    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.469 on 22 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.06173,    Adjusted R-squared:  -0.06621 
+## F-statistic: 0.4825 on 3 and 22 DF,  p-value: 0.6978
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = MOCA_TOTAL ~ age * geno, data = combo_m)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.5073 -2.0288  0.4203  2.2886  3.2864 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   28.85171    3.64458   7.916 1.55e-06 ***
+## age           -0.02929    0.06561  -0.446    0.662    
+## genoAPOE4      6.57059    5.82381   1.128    0.278    
+## age:genoAPOE4 -0.13863    0.10737  -1.291    0.218    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.913 on 14 degrees of freedom
+##   (5 observations deleted due to missingness)
+## Multiple R-squared:  0.2333, Adjusted R-squared:  0.06905 
+## F-statistic:  1.42 on 3 and 14 DF,  p-value: 0.2786
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 7 rows containing non-finite values (stat_smooth).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 7 rows containing missing values (geom_point).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing non-finite values (stat_smooth).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (geom_point).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 5 rows containing non-finite values (stat_smooth).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 5 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/lm-practice-1.pdf}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 7 rows containing non-finite values (stat_smooth).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 7 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/lm-practice-2.pdf}
+
+\begin{verbatim}
+## Warning: Removed 7 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 7 rows containing missing values (geom_point).
+\end{verbatim}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 7 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 7 rows containing missing values (geom_point).
+\end{verbatim}
+
+\begin{verbatim}
+## NULL
+\end{verbatim}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 7 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 7 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/lm-practice-3.pdf}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 7 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 7 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/lm-practice-4.pdf}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 7 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 7 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/lm-practice-5.pdf}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = MOCA_TOTAL ~ age * genotype * sex, data = ad)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.8308 -1.0497  0.1067  1.5370  3.2813 
+## 
+## Coefficients: (2 not defined because of singularities)
+##                              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                 2.900e+01  6.029e+00   4.810 3.98e-05 ***
+## age                        -9.472e-15  1.077e-01   0.000    1.000    
+## genotypeAPOE33              9.411e-01  7.146e+00   0.132    0.896    
+## genotypeAPOE34              4.216e-01  6.799e+00   0.062    0.951    
+## genotypeAPOE44             -3.900e+02  2.846e+02  -1.370    0.181    
+## sexMale                     2.510e+02  1.796e+02   1.398    0.172    
+## age:genotypeAPOE33         -5.272e-02  1.312e-01  -0.402    0.691    
+## age:genotypeAPOE34         -1.885e-02  1.294e-01  -0.146    0.885    
+## age:genotypeAPOE44          7.000e+00  5.171e+00   1.354    0.186    
+## age:sexMale                -5.000e+00  3.555e+00  -1.406    0.170    
+## genotypeAPOE33:sexMale     -2.522e+02  1.796e+02  -1.404    0.171    
+## genotypeAPOE34:sexMale     -2.478e+02  1.796e+02  -1.379    0.178    
+## genotypeAPOE44:sexMale             NA         NA      NA       NA    
+## age:genotypeAPOE33:sexMale  5.025e+00  3.556e+00   1.413    0.168    
+## age:genotypeAPOE34:sexMale  4.922e+00  3.557e+00   1.384    0.177    
+## age:genotypeAPOE44:sexMale         NA         NA      NA       NA    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.513 on 30 degrees of freedom
+## Multiple R-squared:  0.3823, Adjusted R-squared:  0.1147 
+## F-statistic: 1.429 on 13 and 30 DF,  p-value: 0.2037
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/cohort-1.pdf}
+\includegraphics{ad_decode_files/figure-latex/cohort-2.pdf}
+
+\begin{verbatim}
+## Warning in qt((1 - level)/2, df): NaNs produced
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in max(ids, na.rm = TRUE): no non-missing arguments to max; returning
+## -Inf
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/cohort-3.pdf}
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : span too small. fewer data values than degrees of freedom.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 24.975
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 4.025
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 0
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 1.0506
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in predLoess(object$y, object$x, newx = if
+## (is.null(newdata)) object$x else if (is.data.frame(newdata))
+## as.matrix(model.frame(delete.response(terms(object)), : span too small. fewer
+## data values than degrees of freedom.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in predLoess(object$y, object$x, newx = if
+## (is.null(newdata)) object$x else if (is.data.frame(newdata))
+## as.matrix(model.frame(delete.response(terms(object)), : pseudoinverse used at
+## 24.975
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in predLoess(object$y, object$x, newx = if
+## (is.null(newdata)) object$x else if (is.data.frame(newdata))
+## as.matrix(model.frame(delete.response(terms(object)), : neighborhood radius
+## 4.025
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in predLoess(object$y, object$x, newx = if
+## (is.null(newdata)) object$x else if (is.data.frame(newdata))
+## as.matrix(model.frame(delete.response(terms(object)), : reciprocal condition
+## number 0
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in predLoess(object$y, object$x, newx = if
+## (is.null(newdata)) object$x else if (is.data.frame(newdata))
+## as.matrix(model.frame(delete.response(terms(object)), : There are other near
+## singularities as well. 1.0506
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : span too small. fewer data values than degrees of freedom.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : at 19.98
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : radius 0.0004
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : all data on boundary of neighborhood. make span bigger
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 19.98
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 0.02
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : at 24.02
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : radius 0.0004
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : all data on boundary of neighborhood. make span bigger
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 0.0004
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : zero-width neighborhood. make span bigger
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : zero-width neighborhood. make span bigger
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Computation failed in `stat_smooth()`:
+## NA/NaN/Inf in foreign function call (arg 5)
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/cohort-4.pdf}
+
+\begin{verbatim}
+## Warning: `fun.y` is deprecated. Use `fun` instead.
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/cohort-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ ad, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{fill =}\NormalTok{ genotype)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{10}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\DecValTok{20}\NormalTok{,}\DecValTok{80}\NormalTok{,}\DecValTok{10}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Age"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Number of participants"}\NormalTok{,}
+    \AttributeTok{title =} \StringTok{"Cohort physiological distribution"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Age by genotype"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ad_decode_files/figure-latex/other-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ ad, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{fill =}\NormalTok{ sex)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{10}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Age"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Number of participants"}\NormalTok{,}
+    \AttributeTok{title =} \StringTok{"Cohort physiological distribution"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Age by sex"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ad_decode_files/figure-latex/other-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ad\_odor }\OtherTok{\textless{}{-}}\NormalTok{ ad }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!} \FunctionTok{is.na}\NormalTok{(sex))}
+
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ ad\_odor, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{factor}\NormalTok{(genotype), }\AttributeTok{y =}\NormalTok{ Recognized)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_violin}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{outlier.color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{height =} \DecValTok{0}\NormalTok{, }\AttributeTok{width =} \FloatTok{0.3}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ sex)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Genotype"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Percent recognized that were included in first set"}\NormalTok{,}
+    \AttributeTok{title =} \StringTok{"Distributions of percent of odors recognized by genotype"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ad_decode_files/figure-latex/other-3.pdf}
+
+\includegraphics{ad_decode_files/figure-latex/benson-1.pdf}
+
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value Pr(>F)
+## genotype     3   7.54   2.512   2.143   0.11
+## Residuals   40  46.89   1.172
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/benson-2.pdf}
+
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value Pr(>F)  
+## genotype     3  71.67  23.892   3.462  0.025 *
+## Residuals   40 276.05   6.901                 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/craft-story-1.pdf}
+
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value Pr(>F)
+## genotype     3  224.1   74.69   1.063  0.376
+## Residuals   40 2811.6   70.29
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/craft-story-2.pdf}
+
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value Pr(>F)
+## sex          1     36      36     3.6  0.198
+## Residuals    2     20      10
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing non-finite values (stat_ydensity).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing non-finite values (stat_boxplot).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 1 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/craft-story-3.pdf}
+
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value Pr(>F)
+## sex          1   12.4   12.40   0.144  0.708
+## Residuals   21 1806.2   86.01               
+## 1 observation deleted due to missingness
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/craft-story-4.pdf}
+
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value Pr(>F)
+## sex          1      0    0.00       0      1
+## Residuals   19   1218   64.12
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/moca-1.pdf}
+
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value  Pr(>F)   
+## genotype     3  77.78  25.927   4.532 0.00794 **
+## Residuals   40 228.86   5.721                   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/moca-2.pdf}
+
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value Pr(>F)
+## sex          1   2.25    2.25    0.36  0.609
+## Residuals    2  12.50    6.25
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/moca-3.pdf}
+
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value Pr(>F)
+## sex          1   0.03   0.029   0.003  0.956
+## Residuals   17 155.66   9.156
+\end{verbatim}
+
+\includegraphics{ad_decode_files/figure-latex/moca-4.pdf}
+
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value Pr(>F)
+## sex          1   2.51   2.511   0.891  0.358
+## Residuals   17  47.91   2.818
+\end{verbatim}
+
+\end{document}

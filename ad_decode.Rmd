@@ -1,5 +1,5 @@
 ---
-title: "Initial AD DECODE graphs and analysis of variation"
+title: "Test code"
 author: "Anna MacFarlane"
 date: "7/8/2021"
 output: pdf_document
@@ -41,32 +41,6 @@ combo_m <- geno_combined %>%
   filter(sex == "Male")
 ```
 
-```{r sex, echo = FALSE}
-plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_TOTAL,
-                          color = Genotype,  fill = Genotype)) + 
-  geom_point(aes(shape = Risk)) +
-  geom_smooth(formula = y ~ x, method = "lm") +
-  labs(title = "MOCA scores linear model",
-       subtitle = "Both males and females",
-       x = "Age", y = "Total MOCA Score") +
-  theme_bw() +
-  background_grid(major = "xy", minor = "none")
-
-plot4 <- ggplot(geno_combined, aes(age, MOCA_TOTAL, 
-                                   color = Genotype, fill = Genotype)) + 
-  geom_point(aes(shape = Risk)) + 
-  facet_grid(. ~ sex) + 
-  stat_smooth(method = "lm") +
-  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
-  panel_border() + 
-  theme_bw()+
-  labs(x = "Age", y = "Total MOCA Score") +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
-```
 
 ``` {r lm-practice, echo = FALSE}
 # linear model with interactions for combined genotypes
@@ -193,6 +167,10 @@ ggplot(data = ad, aes(x = age, fill = genotype)) +
    	y = "Number of participants",
    	title = "Cohort physiological distribution",
    	subtitle = "Age by genotype")
+
+ggplot(ad, aes(x = age, fill = genotype)) +
+  geom_density(alpha = 1/3)
+  
 
 ggplot(data = ad, aes(x = age, fill = sex)) +
   geom_histogram(bins = 10) +
