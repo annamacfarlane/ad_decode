@@ -1,0 +1,1038 @@
+---
+title: "Raw Scores with APOE2"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, echo = FALSE)
+library(tidyverse)
+library(cowplot)
+library(scales)
+data <- read.csv("AD_DECODE_data.csv")
+
+ad <- data %>% 
+  filter(! is.na(Weight)) %>% 
+  mutate(sex = case_when(
+    sex == "F" ~ "Female",
+    sex == "M" ~ "Male"
+  )) %>% 
+  filter(risk_for_ad != 3)
+
+# data by genotypes
+e23 <- ad %>% 
+  filter(genotype == "APOE23") 
+e33 <- ad %>% 
+  filter(genotype == "APOE33")
+e34 <- ad %>% 
+  filter(genotype == "APOE34")
+
+# separating by sex
+combo_f <- ad %>% 
+  filter(sex == "Female")
+
+combo_m <- ad %>% 
+  filter(sex == "Male")
+
+```
+
+```{r ufov-1, echo = FALSE}
+plot1<-ggplot(ad, aes(x = age, y = ufov1,
+                                 color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "UFOV1 scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "UFOV1 score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  #annotate("point", x = 82, y = data, colour = "blue")
+  annotate("point", x = data$age[49], y = data$ufov1[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, ufov1, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "UFOV1 score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+
+```
+
+
+
+```{r ufov-2, echo = FALSE}
+plot1<-ggplot(ad, aes(x = age, y = ufov2,
+                                 color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "UFOV2 scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "UFOV2 score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$ufov2[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, ufov2, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "UFOV2 score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+
+```{r ufov-3, echo = FALSE}
+plot1<-ggplot(ad, aes(x = age, y = ufov3,
+                                 color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "UFOV3 scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "UFOV3 score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$ufov3[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, ufov3, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "UFOV3 score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+
+```
+
+
+```{r animals-norepeats, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = animals,
+                                 color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Animal naming scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Animal naming score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$animals[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, animals, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Animal naming score") +
+  theme(legend.position="none")
+
+
+```
+
+
+```{r vegetables-norepeats, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = vegetables,
+                                 color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Vegetable naming scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Vegetable naming score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$vegetables[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, vegetables, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Vegetable naming score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+```
+
+```{r f-norepeats, echo = FALSE}
+plot1<-ggplot(ad, aes(x = age, y = f,
+                                 color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "F words naming scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "F words naming score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$f[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, f, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "F words naming score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+
+```
+
+
+
+
+```{r l-norepeats, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = l,
+                                 color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "L words naming scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "L words naming score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$l[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, l, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "L words naming score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+
+
+```{r trail-A, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = trailA,
+                                 color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Trail A scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Trail A score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$trailA[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, trailA, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Trail A score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+
+```{r trail-B, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = trailB,
+                                 color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Trail B scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Trail B score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$trailB[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, trailB, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Trail B score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+
+```{r trail-differ, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = trailDiff,
+                                 color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Difference between trail scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Trail scores difference") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$trailDiff[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, trailDiff, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Trail scores difference") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+```
+
+
+```{r number-spanforwards, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = fwd_total_correct,
+                                 color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Forward Total Correct score linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Forward Total Correct scores") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$fwd_total_correct[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, fwd_total_correct, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Forward Total Correct scores") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+```
+
+
+```{r number-spanbackwards, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = bckwds_total_correct,
+                                 color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Backward Total Correct score linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Backward Total Correct scores") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$bckwds_total_correct[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, bckwds_total_correct, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Backward Total Correct scores") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+
+```{r number-spanfwdsmax, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = fwd_max_length,
+                                 color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Forward Max Length linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Forward Max Length scores") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$fwd_max_length[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, fwd_max_length, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Forward Max Length scores") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+
+```{r number-spanbckwdsmax, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = bckwds_max_length,
+                                 color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Backward Max Length linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Backward Max Length scores") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$bckwds_max_length[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, bckwds_max_length, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Backwards Max Length scores") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r ravlt-forg, echo = FALSE}
+plot1<-ggplot(ad, aes(x = age, y = RAVLT_FORGETTING,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "RAVLT forgetting scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "RAVLT forgetting scores") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$RAVLT_FORGETTING[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, RAVLT_FORGETTING, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "RAVLT forgetting scores") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r ravlt-learn, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = RAVLT_LEARNING,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "RAVLT learning scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "RAVLT learning scores") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$RAVLT_LEARNING[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, RAVLT_LEARNING, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "RAVLT learning scores") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r ravlt-imm, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = RAVLT_IMMEDIATE,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "RAVLT Immediate scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "RAVLT Immediate scores") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$RAVLT_IMMEDIATE[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, RAVLT_IMMEDIATE, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "RAVLT Immediate scores") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r ravlt-7, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = AVLT_Trial7,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "AVLT Trial 7 (delayed) scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = " AVLT Trial 7 scores") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$AVLT_Trial7[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, AVLT_Trial7, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "AVLT Trial 7 scores") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r comp-pl, echo = FALSE}
+# average of all 12 pleasantness scores
+plot1<-ggplot(ad, aes(x = age, y = Composite_Pleasantness,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Composite pleasantness scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Composite pleasantness score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$Composite_Pleasantness[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, Composite_Pleasantness, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Composite pleasantness score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+
+```
+
+```{r comp-intensity, echo = FALSE}
+# average of all 12 intensity scores
+plot1<-ggplot(ad, aes(x = age, y = Composite_Intensity,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Composite intensity scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Composite intensity score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$Composite_Intensity[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, Composite_Intensity, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Composite intensity score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r comp-fam, echo = FALSE}
+# average of all 12 familiarity scores
+plot1<-ggplot(ad, aes(x = age, y = Composite_Familiarity,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Composite familiarity scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Composite familiarity score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$Composite_Familiarity[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, Composite_Familiarity, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Composite familiarity score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r comp-name, echo = FALSE}
+# average of all 12 nameability scores
+plot1<-ggplot(ad, aes(x = age, y = Composite_Nameability,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Composite nameability scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Composite nameability score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$Composite_Nameability[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, Composite_Nameability, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Composite nameability score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r odor-rec, echo = FALSE}
+plot1<-ggplot(ad, aes(x = age, y = Recognized,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Odor percent correctly recognized linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Odor percent correctly recognized") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$Recognized[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, Recognized, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Odor percent correctly recognized") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+
+```
+
+```{r odor-precent, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = PrecentCorrectRecall,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Odor recognition percent correct recall linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Odor recognition percent correct recall") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$PrecentCorrectRecall[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, PrecentCorrectRecall, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Odor recognition percent correct recall ") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r delay-benson, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = Delay_BensonTotal,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Total delayed Benson scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Total delayed Benson  score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$Delay_BensonTotal[49], colour = "blue", shape = 8)
+
+
+plot4 <- ggplot(ad, aes(age, Delay_BensonTotal, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Total delayed Benson score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r imm-benson, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = Im_BensonTotal,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Total immediate Benson scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Total immediate Benson  score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$Im_BensonTotal[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, Im_BensonTotal, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Total immediate Benson score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r story-delay, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = Delayed_verbatim,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Story delayed verbatim scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Story delayed verbatim score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none")  +
+  annotate("point", x = data$age[49], y = data$Delayed_verbatim[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, Delayed_verbatim, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Story delayed verbatim score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r story-imm, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = Immediate_verbatim,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "Story immediate verbatim scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Story immediate verbatim score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$Immediate_verbatim[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, Immediate_verbatim, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Story immediate verbatim score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r moca-attn, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = MOCA_Attention_Digits,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "MOCA attention digits scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "MOCA attention digits score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$MOCA_Attention_Digits[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, MOCA_Attention_Digits, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "MOCA attention digits score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r moca-mem, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = MOCA_Memory,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "MOCA memory scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "MOCA memory Score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$MOCA_Memory[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, MOCA_Memory, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "MOCA memory Score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r moca-name, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = MOCA_Naming,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "MOCA naming scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "MOCA naming Score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$MOCA_Naming[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, MOCA_Naming, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "MOCA naming Score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r moca-vis, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = MOCA_Visuospatial,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "MOCA visuospatial scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "MOCA visuospatial Score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$MOCA_Visuospatial[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, MOCA_Visuospatial, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "MOCA Visuospatial Score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+
+```
+
+```{r moca-total, echo = FALSE}
+
+plot1<-ggplot(ad, aes(x = age, y = MOCA_TOTAL,
+                          color = genotype,  fill = genotype)) + 
+  geom_point(aes(shape = Risk)) +
+  geom_smooth(formula = y ~ x, method = "lm", alpha = 0.2) +
+  labs(title = "MOCA scores linear model",
+       subtitle = "Both males and females",
+       x = "Age", y = "Total MOCA Score") +
+  theme_bw() +
+  background_grid(major = "xy", minor = "none") +
+  annotate("point", x = data$age[49], y = data$MOCA_TOTAL[49], colour = "blue", shape = 8)
+
+plot4 <- ggplot(ad, aes(age, MOCA_TOTAL, 
+                                   color = genotype, fill = genotype)) + 
+  geom_point(aes(shape = Risk)) + 
+  facet_grid(. ~ sex) + 
+  stat_smooth(method = "lm", alpha = 0.2) +
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  labs(x = "Age", y = "Total MOCA Score") +
+  theme(legend.position="none")
+
+ggdraw() + 
+  draw_plot(plot1, 0, .5, 1, .5) +
+  draw_plot(plot4, 0, 0, 1, .5) 
+```
+
+
