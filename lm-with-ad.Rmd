@@ -979,6 +979,10 @@ summary(lm_f)
 
 lm_m <- lm(Composite_Nameability ~ age*Genotype, combo_m)
 summary(lm_m)
+
+anova(lm)
+anova(lm_f)
+anova(lm_m)
 ```
 
 ```{r odor-rec, echo = FALSE}
