@@ -1139,7 +1139,7 @@ lm <- lm(Im_BensonTotal ~ age*Genotype*sex, geno_combined)
 summary(lm)
 
 lm_f <- lm(Im_BensonTotal ~ age*Genotype, combo_f)
-summary(imbenson_lm_f)
+summary(lm_f)
 
 lm_m <- lm(Im_BensonTotal ~ age*Genotype, combo_m)
 summary(lm_m)
