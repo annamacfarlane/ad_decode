@@ -70,6 +70,10 @@ summary(lm_f)
 lm_m <- lm(BMI ~ age*Genotype, combo_m)
 summary(lm_m)
 
+anova(lm)
+anova(lm_f)
+anova(lm_m)
+
 ```
 
 ```{r bp}
@@ -120,6 +124,10 @@ summary(lm_f)
 lm_m <- lm(Systolic ~ age*Genotype, combo_m)
 summary(lm_m)
 
+anova(lm)
+anova(lm_f)
+anova(lm_m)
+
 plot1 <- ggplot(geno_combined, aes(x = age, y = Diastolic,
                           color = Genotype,  fill = Genotype)) + 
   geom_point(aes(shape = Risk)) +
@@ -146,6 +154,10 @@ lm_f <- lm(Diastolic ~ age*Genotype, combo_f)
 summary(lm_f)
 lm_m <- lm(Diastolic ~ age*Genotype, combo_m)
 summary(lm_m)
+
+anova(lm)
+anova(lm_f)
+anova(lm_m)
 ```
 
 ``` {r pulse}
@@ -176,6 +188,10 @@ lm_f <- lm(Pulse ~ age*Genotype, combo_f)
 summary(lm_f)
 lm_m <- lm(Pulse ~ age*Genotype, combo_m)
 summary(lm_m)
+
+anova(lm)
+anova(lm_f)
+anova(lm_m)
 
 ```
 
