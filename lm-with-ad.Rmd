@@ -1,7 +1,12 @@
 ---
 title: "Linear models with AD subject"
+author: "Anna MacFarlane"
 output: pdf_document
 ---
+
+### This section
+
+## Title
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
@@ -18,7 +23,8 @@ ad <- data %>%
     sex == "F" ~ "Female",
     sex == "M" ~ "Male"
   )) %>% 
-  filter(risk_for_ad != 3)
+  filter(risk_for_ad != 3) %>% 
+  filter(risk_for_ad != 2)
 
 # data by genotypes
 e23 <- ad %>% 
