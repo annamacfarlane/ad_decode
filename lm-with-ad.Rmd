@@ -14,6 +14,7 @@ library(tidyverse)
 library(cowplot)
 data <- read.csv("AD_DECODE_data.csv")
 
+view(data)
 #ad_pat <- which(data$risk_for_ad == 2)
 
 ad <- data %>% 
@@ -61,7 +62,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = ufov1,
   #annotate("point", x = 82, y = data, colour = "blue")
   annotate("point", x = data$age[49], y = data$ufov1[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, ufov1, 
                                    color = Genotype, fill = Genotype)) + 
@@ -106,8 +109,10 @@ plot1<-ggplot(geno_combined, aes(x = age, y = ufov2,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$ufov2[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$ufov2[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$ufov2[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov2[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov2[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, ufov2, 
                                    color = Genotype, fill = Genotype)) + 
@@ -151,8 +156,10 @@ plot1<-ggplot(geno_combined, aes(x = age, y = ufov3,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$ufov3[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$ufov3[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$ufov3[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov3[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov3[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, ufov3, 
                                    color = Genotype, fill = Genotype)) + 
@@ -197,8 +204,10 @@ plot1<-ggplot(geno_combined, aes(x = age, y = animals,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$animals[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$animals[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$animals[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$animals[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$animals[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, animals, 
                                    color = Genotype, fill = Genotype)) + 
@@ -245,7 +254,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = vegetables,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$vegetables[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, vegetables, 
                                    color = Genotype, fill = Genotype)) + 
@@ -288,7 +299,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = f,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$f[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, f, 
                                    color = Genotype, fill = Genotype)) + 
@@ -336,7 +349,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = l,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$l[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, l, 
                                    color = Genotype, fill = Genotype)) + 
@@ -382,7 +397,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = trailA,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$trailA[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, trailA, 
                                    color = Genotype, fill = Genotype)) + 
@@ -427,7 +444,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = trailB,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$trailB[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, trailB, 
                                    color = Genotype, fill = Genotype)) + 
@@ -472,7 +491,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = trailDiff,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$trailDiff[49], colour = "blue", shape = 8)+
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, trailDiff, 
                                    color = Genotype, fill = Genotype)) + 
@@ -517,7 +538,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = fwd_total_correct,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$fwd_total_correct[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, fwd_total_correct, 
                                    color = Genotype, fill = Genotype)) + 
@@ -562,7 +585,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = bckwds_total_correct,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$bckwds_total_correct[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, bckwds_total_correct, 
                                    color = Genotype, fill = Genotype)) + 
@@ -607,7 +632,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = fwd_max_length,
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$fwd_max_length[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, fwd_max_length, 
                                    color = Genotype, fill = Genotype)) + 
@@ -652,7 +679,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = bckwds_max_length,
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$bckwds_max_length[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, bckwds_max_length, 
                                    color = Genotype, fill = Genotype)) + 
@@ -695,7 +724,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = RAVLT_FORGETTING,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$RAVLT_FORGETTING[49], colour = "blue", shape = 8)+
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, RAVLT_FORGETTING, 
                                    color = Genotype, fill = Genotype)) + 
@@ -739,7 +770,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = RAVLT_LEARNING,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$RAVLT_LEARNING[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, RAVLT_LEARNING, 
                                    color = Genotype, fill = Genotype)) + 
@@ -783,7 +816,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = RAVLT_IMMEDIATE,
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$RAVLT_IMMEDIATE[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, RAVLT_IMMEDIATE, 
                                    color = Genotype, fill = Genotype)) + 
@@ -827,7 +862,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = AVLT_Trial7,
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$AVLT_Trial7[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, AVLT_Trial7, 
                                    color = Genotype, fill = Genotype)) + 
@@ -871,7 +908,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Composite_Pleasantness,
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$Composite_Pleasantness[49], colour = "blue", shape = 8)+
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, Composite_Pleasantness, 
                                    color = Genotype, fill = Genotype)) + 
@@ -915,7 +954,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Composite_Intensity,
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$Composite_Intensity[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, Composite_Intensity, 
                                    color = Genotype, fill = Genotype)) + 
@@ -959,7 +1000,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Composite_Familiarity,
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$Composite_Familiarity[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, Composite_Familiarity, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1003,7 +1046,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Composite_Nameability,
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$Composite_Nameability[49], colour = "blue", shape = 8)+
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, Composite_Nameability, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1046,7 +1091,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Recognized,
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$Recognized[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, Recognized, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1090,7 +1137,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = PrecentCorrectRecall,
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$PrecentCorrectRecall[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, PrecentCorrectRecall, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1134,7 +1183,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Delay_BensonTotal,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$Delay_BensonTotal[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 
 plot4 <- ggplot(geno_combined, aes(age, Delay_BensonTotal, 
@@ -1179,7 +1230,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Im_BensonTotal,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$Im_BensonTotal[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, Im_BensonTotal, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1223,7 +1276,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Delayed_verbatim,
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$Delayed_verbatim[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, Delayed_verbatim, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1267,7 +1322,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Immediate_verbatim,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$Immediate_verbatim[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, Immediate_verbatim, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1311,7 +1368,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Attention_Digits,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$MOCA_Attention_Digits[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, MOCA_Attention_Digits, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1355,7 +1414,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Memory,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$MOCA_Memory[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, MOCA_Memory, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1399,7 +1460,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Naming,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$MOCA_Naming[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, MOCA_Naming, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1443,7 +1506,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Visuospatial,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$MOCA_Visuospatial[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, MOCA_Visuospatial, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1487,7 +1552,9 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_TOTAL,
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$MOCA_TOTAL[49], colour = "blue", shape = 8) +
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
 plot4 <- ggplot(geno_combined, aes(age, MOCA_TOTAL, 
                                    color = Genotype, fill = Genotype)) + 
