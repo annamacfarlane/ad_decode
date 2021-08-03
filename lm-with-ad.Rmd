@@ -8,7 +8,7 @@ Note: blue stars on upper plots denote subject with AD, and green squares
 indicate subjects with MCI
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = FALSE)
 #tinytex::install_tinytex()
 library(tidyverse)
 library(cowplot)
@@ -47,6 +47,15 @@ combo_f <- geno_combined %>%
 
 combo_m <- geno_combined %>% 
   filter(sex == "Male")
+
+f_facet <- data %>% 
+  filter(risk_for_ad == 3 | risk_for_ad == 2)  %>% 
+  filter(sex == "Female")
+
+m_facet <- data %>% 
+  filter(risk_for_ad == 3 | risk_for_ad == 2)  %>% 
+  filter(sex == "Male")
+  
 ```
 
 ```{r ufov-1, echo = FALSE}
@@ -66,7 +75,7 @@ plot1<-ggplot(geno_combined, aes(x = age, y = ufov1,
   annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, ufov1, 
+plot2 <- ggplot(geno_combined, aes(age, ufov1, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -75,11 +84,11 @@ plot4 <- ggplot(geno_combined, aes(age, ufov1,
   panel_border() + 
   theme_bw()+
   labs(x = "Age", y = "UFOV1 score") +
-  theme(legend.position="none")
+  theme(legend.position="none") 
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(ufov1 ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -114,7 +123,7 @@ plot1<-ggplot(geno_combined, aes(x = age, y = ufov2,
   annotate("point", x = data$age[56], y = data$ufov2[56], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[58], y = data$ufov2[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, ufov2, 
+plot2 <- ggplot(geno_combined, aes(age, ufov2, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -127,7 +136,7 @@ plot4 <- ggplot(geno_combined, aes(age, ufov2,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(ufov2 ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -161,7 +170,7 @@ plot1<-ggplot(geno_combined, aes(x = age, y = ufov3,
   annotate("point", x = data$age[56], y = data$ufov3[56], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[58], y = data$ufov3[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, ufov3, 
+plot2 <- ggplot(geno_combined, aes(age, ufov3, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -174,7 +183,7 @@ plot4 <- ggplot(geno_combined, aes(age, ufov3,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(ufov3 ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -209,7 +218,7 @@ plot1<-ggplot(geno_combined, aes(x = age, y = animals,
   annotate("point", x = data$age[56], y = data$animals[56], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[58], y = data$animals[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, animals, 
+plot2 <- ggplot(geno_combined, aes(age, animals, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -222,7 +231,7 @@ plot4 <- ggplot(geno_combined, aes(age, animals,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(animals ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -253,12 +262,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = vegetables,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$vegetables[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$vegetables[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$vegetables[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$vegetables[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$vegetables[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, vegetables, 
+plot2 <- ggplot(geno_combined, aes(age, vegetables, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -271,7 +280,7 @@ plot4 <- ggplot(geno_combined, aes(age, vegetables,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(vegetables ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -298,12 +307,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = f,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$f[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$f[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$f[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$f[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$f[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, f, 
+plot2 <- ggplot(geno_combined, aes(age, f, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -316,7 +325,7 @@ plot4 <- ggplot(geno_combined, aes(age, f,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(f ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -348,12 +357,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = l,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$l[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$l[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$l[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$l[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$l[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, l, 
+plot2 <- ggplot(geno_combined, aes(age, l, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -366,7 +375,7 @@ plot4 <- ggplot(geno_combined, aes(age, l,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(l ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -396,12 +405,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = trailA,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$trailA[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$trailA[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$trailA[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$trailA[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$trailA[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, trailA, 
+plot2 <- ggplot(geno_combined, aes(age, trailA, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -414,7 +423,7 @@ plot4 <- ggplot(geno_combined, aes(age, trailA,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(trailA ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -443,12 +452,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = trailB,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$trailB[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$trailB[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$trailB[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$trailB[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$trailB[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, trailB, 
+plot2 <- ggplot(geno_combined, aes(age, trailB, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -461,7 +470,7 @@ plot4 <- ggplot(geno_combined, aes(age, trailB,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(trailB ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -490,12 +499,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = trailDiff,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$trailDiff[49], colour = "blue", shape = 8)+
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$trailDiff[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$trailDiff[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$trailDiff[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$trailDiff[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, trailDiff, 
+plot2 <- ggplot(geno_combined, aes(age, trailDiff, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -508,7 +517,7 @@ plot4 <- ggplot(geno_combined, aes(age, trailDiff,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(trailDiff ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -537,12 +546,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = fwd_total_correct,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$fwd_total_correct[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$fwd_total_correct[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$fwd_total_correct[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$fwd_total_correct[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$fwd_total_correct[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, fwd_total_correct, 
+plot2 <- ggplot(geno_combined, aes(age, fwd_total_correct, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -555,7 +564,7 @@ plot4 <- ggplot(geno_combined, aes(age, fwd_total_correct,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(fwd_total_correct ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -584,12 +593,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = bckwds_total_correct,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$bckwds_total_correct[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$bckwds_total_correct[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$bckwds_total_correct[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$bckwds_total_correct[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$bckwds_total_correct[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, bckwds_total_correct, 
+plot2 <- ggplot(geno_combined, aes(age, bckwds_total_correct, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -602,7 +611,7 @@ plot4 <- ggplot(geno_combined, aes(age, bckwds_total_correct,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(bckwds_total_correct ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -631,12 +640,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = fwd_max_length,
   theme_bw() +
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$fwd_max_length[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$fwd_max_length[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$fwd_max_length[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$fwd_max_length[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$fwd_max_length[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, fwd_max_length, 
+plot2 <- ggplot(geno_combined, aes(age, fwd_max_length, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -649,7 +658,7 @@ plot4 <- ggplot(geno_combined, aes(age, fwd_max_length,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(fwd_max_length ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -678,12 +687,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = bckwds_max_length,
   theme_bw() +
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$bckwds_max_length[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$bckwds_max_length[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$bckwds_max_length[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$bckwds_max_length[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$bckwds_max_length[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, bckwds_max_length, 
+plot2 <- ggplot(geno_combined, aes(age, bckwds_max_length, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -696,7 +705,7 @@ plot4 <- ggplot(geno_combined, aes(age, bckwds_max_length,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(bckwds_max_length ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -723,12 +732,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = RAVLT_FORGETTING,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$RAVLT_FORGETTING[49], colour = "blue", shape = 8)+
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$RAVLT_FORGETTING[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$RAVLT_FORGETTING[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$RAVLT_FORGETTING[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$RAVLT_FORGETTING[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, RAVLT_FORGETTING, 
+plot2 <- ggplot(geno_combined, aes(age, RAVLT_FORGETTING, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -741,7 +750,7 @@ plot4 <- ggplot(geno_combined, aes(age, RAVLT_FORGETTING,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(RAVLT_FORGETTING ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -769,12 +778,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = RAVLT_LEARNING,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$RAVLT_LEARNING[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$RAVLT_LEARNING[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$RAVLT_LEARNING[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$RAVLT_LEARNING[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$RAVLT_LEARNING[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, RAVLT_LEARNING, 
+plot2 <- ggplot(geno_combined, aes(age, RAVLT_LEARNING, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -787,7 +796,7 @@ plot4 <- ggplot(geno_combined, aes(age, RAVLT_LEARNING,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(RAVLT_LEARNING ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -815,12 +824,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = RAVLT_IMMEDIATE,
   theme_bw() +
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$RAVLT_IMMEDIATE[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$RAVLT_IMMEDIATE[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$RAVLT_IMMEDIATE[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$RAVLT_IMMEDIATE[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$RAVLT_IMMEDIATE[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, RAVLT_IMMEDIATE, 
+plot2 <- ggplot(geno_combined, aes(age, RAVLT_IMMEDIATE, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -833,7 +842,7 @@ plot4 <- ggplot(geno_combined, aes(age, RAVLT_IMMEDIATE,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(RAVLT_IMMEDIATE ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -861,12 +870,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = AVLT_Trial7,
   theme_bw() +
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$AVLT_Trial7[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$AVLT_Trial7[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$AVLT_Trial7[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$AVLT_Trial7[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$AVLT_Trial7[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, AVLT_Trial7, 
+plot2 <- ggplot(geno_combined, aes(age, AVLT_Trial7, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -879,7 +888,7 @@ plot4 <- ggplot(geno_combined, aes(age, AVLT_Trial7,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(AVLT_Trial7 ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -907,12 +916,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Composite_Pleasantness,
   theme_bw() +
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$Composite_Pleasantness[49], colour = "blue", shape = 8)+
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$Composite_Pleasantness[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$Composite_Pleasantness[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$Composite_Pleasantness[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$Composite_Pleasantness[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, Composite_Pleasantness, 
+plot2 <- ggplot(geno_combined, aes(age, Composite_Pleasantness, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -925,7 +934,7 @@ plot4 <- ggplot(geno_combined, aes(age, Composite_Pleasantness,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(Composite_Pleasantness ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -953,12 +962,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Composite_Intensity,
   theme_bw() +
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$Composite_Intensity[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$Composite_Intensity[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$Composite_Intensity[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$Composite_Intensity[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$Composite_Intensity[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, Composite_Intensity, 
+plot2 <- ggplot(geno_combined, aes(age, Composite_Intensity, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -971,7 +980,7 @@ plot4 <- ggplot(geno_combined, aes(age, Composite_Intensity,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(Composite_Intensity ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -999,12 +1008,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Composite_Familiarity,
   theme_bw() +
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$Composite_Familiarity[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$Composite_Familiarity[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$Composite_Familiarity[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$Composite_Familiarity[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$Composite_Familiarity[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, Composite_Familiarity, 
+plot2 <- ggplot(geno_combined, aes(age, Composite_Familiarity, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -1017,7 +1026,7 @@ plot4 <- ggplot(geno_combined, aes(age, Composite_Familiarity,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(Composite_Familiarity ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -1045,12 +1054,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Composite_Nameability,
   theme_bw() +
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$Composite_Nameability[49], colour = "blue", shape = 8)+
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$Composite_Nameability[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$Composite_Nameability[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$Composite_Nameability[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$Composite_Nameability[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, Composite_Nameability, 
+plot2 <- ggplot(geno_combined, aes(age, Composite_Nameability, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -1063,7 +1072,7 @@ plot4 <- ggplot(geno_combined, aes(age, Composite_Nameability,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(Composite_Nameability ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -1090,12 +1099,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Recognized,
   theme_bw() +
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$Recognized[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$Recognized[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$Recognized[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$Recognized[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$Recognized[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, Recognized, 
+plot2 <- ggplot(geno_combined, aes(age, Recognized, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -1108,7 +1117,7 @@ plot4 <- ggplot(geno_combined, aes(age, Recognized,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(Recognized ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -1136,12 +1145,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = PrecentCorrectRecall,
   theme_bw() +
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$PrecentCorrectRecall[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$PrecentCorrectRecall[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$PrecentCorrectRecall[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$PrecentCorrectRecall[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$PrecentCorrectRecall[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, PrecentCorrectRecall, 
+plot2 <- ggplot(geno_combined, aes(age, PrecentCorrectRecall, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -1154,7 +1163,7 @@ plot4 <- ggplot(geno_combined, aes(age, PrecentCorrectRecall,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(PrecentCorrectRecall ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -1182,13 +1191,13 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Delay_BensonTotal,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$Delay_BensonTotal[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$Delay_BensonTotal[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$Delay_BensonTotal[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$Delay_BensonTotal[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$Delay_BensonTotal[58], colour = "darkgreen", shape = 9)
 
 
-plot4 <- ggplot(geno_combined, aes(age, Delay_BensonTotal, 
+plot2 <- ggplot(geno_combined, aes(age, Delay_BensonTotal, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -1201,7 +1210,7 @@ plot4 <- ggplot(geno_combined, aes(age, Delay_BensonTotal,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(Delay_BensonTotal ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -1229,12 +1238,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Im_BensonTotal,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$Im_BensonTotal[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$Im_BensonTotal[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$Im_BensonTotal[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$Im_BensonTotal[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$Im_BensonTotal[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, Im_BensonTotal, 
+plot2 <- ggplot(geno_combined, aes(age, Im_BensonTotal, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -1247,7 +1256,7 @@ plot4 <- ggplot(geno_combined, aes(age, Im_BensonTotal,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(Im_BensonTotal ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -1275,12 +1284,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Delayed_verbatim,
   theme_bw() +
   background_grid(major = "xy", minor = "none")  +
   annotate("point", x = data$age[49], y = data$Delayed_verbatim[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$Delayed_verbatim[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$Delayed_verbatim[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$Delayed_verbatim[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$Delayed_verbatim[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, Delayed_verbatim, 
+plot2 <- ggplot(geno_combined, aes(age, Delayed_verbatim, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -1293,7 +1302,7 @@ plot4 <- ggplot(geno_combined, aes(age, Delayed_verbatim,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(Delayed_verbatim ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -1321,12 +1330,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = Immediate_verbatim,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$Immediate_verbatim[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$Immediate_verbatim[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$Immediate_verbatim[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$Immediate_verbatim[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$Immediate_verbatim[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, Immediate_verbatim, 
+plot2 <- ggplot(geno_combined, aes(age, Immediate_verbatim, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -1339,7 +1348,7 @@ plot4 <- ggplot(geno_combined, aes(age, Immediate_verbatim,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(Immediate_verbatim ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -1366,13 +1375,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Attention_Digits,
        x = "Age", y = "MOCA attention digits score") +
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
-  annotate("point", x = data$age[49], y = data$MOCA_Attention_Digits[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$MOCA_Attention_Digits[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$MOCA_Attention_Digits[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$MOCA_Attention_Digits[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$MOCA_Attention_Digits[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, MOCA_Attention_Digits, 
+plot2 <- ggplot(geno_combined, aes(age, MOCA_Attention_Digits, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -1385,7 +1393,7 @@ plot4 <- ggplot(geno_combined, aes(age, MOCA_Attention_Digits,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(MOCA_Attention_Digits ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -1413,12 +1421,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Memory,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$MOCA_Memory[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$MOCA_Memory[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$MOCA_Memory[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$MOCA_Memory[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$MOCA_Memory[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, MOCA_Memory, 
+plot2 <- ggplot(geno_combined, aes(age, MOCA_Memory, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -1431,7 +1439,7 @@ plot4 <- ggplot(geno_combined, aes(age, MOCA_Memory,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(MOCA_Memory ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -1459,12 +1467,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Naming,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$MOCA_Naming[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$MOCA_Naming[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$MOCA_Naming[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$MOCA_Naming[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$MOCA_Naming[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, MOCA_Naming, 
+plot2 <- ggplot(geno_combined, aes(age, MOCA_Naming, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -1477,7 +1485,7 @@ plot4 <- ggplot(geno_combined, aes(age, MOCA_Naming,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(MOCA_Naming ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -1505,12 +1513,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Visuospatial,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$MOCA_Visuospatial[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$MOCA_Visuospatial[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$MOCA_Visuospatial[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$MOCA_Visuospatial[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$MOCA_Visuospatial[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, MOCA_Visuospatial, 
+plot2 <- ggplot(geno_combined, aes(age, MOCA_Visuospatial, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -1523,7 +1531,7 @@ plot4 <- ggplot(geno_combined, aes(age, MOCA_Visuospatial,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(MOCA_Visuospatial ~ age*Genotype*sex, geno_combined)
 summary(lm)
@@ -1551,12 +1559,12 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_TOTAL,
   theme_bw() +
   background_grid(major = "xy", minor = "none") +
   annotate("point", x = data$age[49], y = data$MOCA_TOTAL[49], colour = "blue", shape = 8) +
-  annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[23], y = data$MOCA_TOTAL[23], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[54], y = data$MOCA_TOTAL[54], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[56], y = data$MOCA_TOTAL[56], colour = "darkgreen", shape = 9) +
+  annotate("point", x = data$age[58], y = data$MOCA_TOTAL[58], colour = "darkgreen", shape = 9)
 
-plot4 <- ggplot(geno_combined, aes(age, MOCA_TOTAL, 
+plot2 <- ggplot(geno_combined, aes(age, MOCA_TOTAL, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   facet_grid(. ~ sex) + 
@@ -1569,7 +1577,7 @@ plot4 <- ggplot(geno_combined, aes(age, MOCA_TOTAL,
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot4, 0, 0, 1, .5) 
+  draw_plot(plot2, 0, 0, 1, .5) 
 
 lm <- lm(MOCA_TOTAL ~ age*Genotype*sex, geno_combined)
 summary(lm)
