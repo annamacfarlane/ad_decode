@@ -2021,7 +2021,7 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_Visuospatial,
   annotate("point", x = data$age[56], y = data$MOCA_Visuospatial[56], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[58], y = data$MOCA_Visuospatial[58], colour = "darkgreen", shape = 9)
 
-plot2 <- ggplot(combo_f, aes(age, MOCA_Naming, 
+plot2 <- ggplot(combo_f, aes(age, MOCA_Visuospatial, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   stat_smooth(method = "lm", alpha = 0.2) +
@@ -2032,7 +2032,7 @@ plot2 <- ggplot(combo_f, aes(age, MOCA_Naming,
   theme(legend.position="none") +
   annotate("point", x = data$age[49], y = data$MOCA_Visuospatial[49], colour = "blue", shape = 8)
 
-plot3 <- ggplot(combo_m, aes(age, MOCA_Naming, 
+plot3 <- ggplot(combo_m, aes(age, MOCA_Visuospatial, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   stat_smooth(method = "lm", alpha = 0.2) +
@@ -2083,7 +2083,7 @@ plot1<-ggplot(geno_combined, aes(x = age, y = MOCA_TOTAL,
   annotate("point", x = data$age[56], y = data$MOCA_TOTAL[56], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[58], y = data$MOCA_TOTAL[58], colour = "darkgreen", shape = 9)
 
-plot2 <- ggplot(combo_f, aes(age, MOCA_Naming, 
+plot2 <- ggplot(combo_f, aes(age, MOCA_TOTAL, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   stat_smooth(method = "lm", alpha = 0.2) +
@@ -2094,7 +2094,7 @@ plot2 <- ggplot(combo_f, aes(age, MOCA_Naming,
   theme(legend.position="none") +
   annotate("point", x = data$age[49], y = data$MOCA_TOTAL[49], colour = "blue", shape = 8)
 
-plot3 <- ggplot(combo_m, aes(age, MOCA_Naming, 
+plot3 <- ggplot(combo_m, aes(age, MOCA_TOTAL, 
                                    color = Genotype, fill = Genotype)) + 
   geom_point(aes(shape = Risk)) + 
   stat_smooth(method = "lm", alpha = 0.2) +
