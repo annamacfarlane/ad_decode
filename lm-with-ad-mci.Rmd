@@ -89,7 +89,8 @@ plot2 <- ggplot(combo_f, aes(age, ufov1,
   theme_bw()+
   labs(x = "Age", y = "UFOV1 score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$ufov1[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$ufov1[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, ufov1, 
                                    color = Genotype, fill = Genotype)) + 
@@ -104,7 +105,8 @@ plot3 <- ggplot(combo_m, aes(age, ufov1,
   annotate("point", x = data$age[23], y = data$ufov1[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$ufov1[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$ufov1[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$ufov1[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -140,7 +142,8 @@ plot1<-ggplot(geno_combined, aes(x = age, y = ufov2,
   annotate("point", x = data$age[23], y = data$ufov2[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$ufov2[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$ufov2[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov2[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$ufov2[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 plot2 <- ggplot(combo_f, aes(age, ufov2, 
                                    color = Genotype, fill = Genotype)) + 
@@ -166,7 +169,8 @@ plot3 <- ggplot(combo_m, aes(age, ufov2,
   annotate("point", x = data$age[23], y = data$ufov2[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$ufov2[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$ufov2[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov2[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$ufov2[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -214,7 +218,8 @@ plot2 <- ggplot(combo_f, aes(age, ufov3,
   theme_bw()+
   labs(x = "Age", y = "UFOV3 score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$ufov1[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$ufov1[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, ufov3, 
                                    color = Genotype, fill = Genotype)) + 
@@ -229,7 +234,8 @@ plot3 <- ggplot(combo_m, aes(age, ufov3,
   annotate("point", x = data$age[23], y = data$ufov3[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$ufov3[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$ufov3[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$ufov3[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$ufov3[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -267,7 +273,7 @@ plot1<-ggplot(geno_combined, aes(x = age, y = animals,
   annotate("point", x = data$age[23], y = data$animals[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$animals[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$animals[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$animals[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$animals[58], colour = "darkgreen", shape = 9) 
 
 plot2 <- ggplot(combo_f, aes(age, animals, 
                                    color = Genotype, fill = Genotype)) + 
@@ -278,7 +284,8 @@ plot2 <- ggplot(combo_f, aes(age, animals,
   theme_bw()+
   labs(x = "Age", y = "Animal naming score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$animals[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$animals[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, animals, 
                                    color = Genotype, fill = Genotype)) + 
@@ -293,7 +300,8 @@ plot3 <- ggplot(combo_m, aes(age, animals,
   annotate("point", x = data$age[23], y = data$animals[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$animals[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$animals[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$animals[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$animals[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -343,7 +351,8 @@ plot2 <- ggplot(combo_f, aes(age, vegetables,
   theme_bw()+
   labs(x = "Age", y = "Vegetable naming score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$vegetables[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$vegetables[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, vegetables, 
                                    color = Genotype, fill = Genotype)) + 
@@ -358,7 +367,8 @@ plot3 <- ggplot(combo_m, aes(age, vegetables,
   annotate("point", x = data$age[23], y = data$vegetables[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$vegetables[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$vegetables[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$vegetables[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$vegetables[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -404,7 +414,8 @@ plot2 <- ggplot(combo_f, aes(age, f,
   theme_bw()+
   labs(x = "Age", y = "F words naming score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$f[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$f[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, f, 
                                    color = Genotype, fill = Genotype)) + 
@@ -419,7 +430,8 @@ plot3 <- ggplot(combo_m, aes(age, f,
   annotate("point", x = data$age[23], y = data$f[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$f[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$f[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$f[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$f[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -470,7 +482,8 @@ plot2 <- ggplot(combo_f, aes(age, l,
   theme_bw()+
   labs(x = "Age", y = "L words naming score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$l[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$l[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, l, 
                                    color = Genotype, fill = Genotype)) + 
@@ -485,7 +498,8 @@ plot3 <- ggplot(combo_m, aes(age, l,
   annotate("point", x = data$age[23], y = data$l[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$l[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$l[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$l[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$l[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -534,7 +548,8 @@ plot2 <- ggplot(combo_f, aes(age, trailA,
   theme_bw()+
   labs(x = "Age", y = "Trail A score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$trailA[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$trailA[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, trailA, 
                                    color = Genotype, fill = Genotype)) + 
@@ -549,7 +564,8 @@ plot3 <- ggplot(combo_m, aes(age, trailA,
   annotate("point", x = data$age[23], y = data$trailA[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$trailA[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$trailA[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$trailA[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$trailA[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -597,7 +613,8 @@ plot2 <- ggplot(combo_f, aes(age, trailB,
   theme_bw()+
   labs(x = "Age", y = "Trail B score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$trailB[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$trailB[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, trailB, 
                                    color = Genotype, fill = Genotype)) + 
@@ -612,7 +629,8 @@ plot3 <- ggplot(combo_m, aes(age, trailB,
   annotate("point", x = data$age[23], y = data$trailB[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$trailB[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$trailB[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$trailB[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$trailB[58], colour = "darkgreen", shape = 9)+
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -660,7 +678,8 @@ plot2 <- ggplot(combo_f, aes(age, trailDiff,
   theme_bw()+
   labs(x = "Age", y = "Trail scores difference", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$trailDiff[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$trailDiff[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, trailDiff, 
                                    color = Genotype, fill = Genotype)) + 
@@ -675,7 +694,8 @@ plot3 <- ggplot(combo_m, aes(age, trailDiff,
   annotate("point", x = data$age[23], y = data$trailDiff[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$trailDiff[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$trailDiff[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$trailDiff[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$trailDiff[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -723,7 +743,8 @@ plot2 <- ggplot(combo_f, aes(age, fwd_total_correct,
   theme_bw()+
   labs(x = "Age", y = "Forward Total Correct score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$fwd_total_correct[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$fwd_total_correct[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, fwd_total_correct, 
                                    color = Genotype, fill = Genotype)) + 
@@ -738,7 +759,8 @@ plot3 <- ggplot(combo_m, aes(age, fwd_total_correct,
   annotate("point", x = data$age[23], y = data$fwd_total_correct[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$fwd_total_correct[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$fwd_total_correct[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$fwd_total_correct[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$fwd_total_correct[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -775,7 +797,7 @@ plot1<-ggplot(geno_combined, aes(x = age, y = bckwds_total_correct,
   annotate("point", x = data$age[23], y = data$bckwds_total_correct[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$bckwds_total_correct[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$bckwds_total_correct[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$bckwds_total_correct[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$bckwds_total_correct[58], colour = "darkgreen", shape = 9) 
 
 plot2 <- ggplot(combo_f, aes(age, bckwds_total_correct, 
                                    color = Genotype, fill = Genotype)) + 
@@ -786,7 +808,8 @@ plot2 <- ggplot(combo_f, aes(age, bckwds_total_correct,
   theme_bw()+
   labs(x = "Age", y = "Backward Total Correct score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$bckwds_total_correct[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$bckwds_total_correct[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, bckwds_total_correct, 
                                    color = Genotype, fill = Genotype)) + 
@@ -801,7 +824,8 @@ plot3 <- ggplot(combo_m, aes(age, bckwds_total_correct,
   annotate("point", x = data$age[23], y = data$bckwds_total_correct[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$bckwds_total_correct[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$bckwds_total_correct[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$bckwds_total_correct[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$bckwds_total_correct[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -849,7 +873,8 @@ plot2 <- ggplot(combo_f, aes(age, fwd_max_length,
   theme_bw()+
   labs(x = "Age", y = "Forward max length score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$fwd_max_length[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$fwd_max_length[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, fwd_max_length, 
                                    color = Genotype, fill = Genotype)) + 
@@ -864,7 +889,8 @@ plot3 <- ggplot(combo_m, aes(age, fwd_max_length,
   annotate("point", x = data$age[23], y = data$fwd_max_length[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$fwd_max_length[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$fwd_max_length[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$fwd_max_length[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$fwd_max_length[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -913,7 +939,8 @@ plot2 <- ggplot(combo_f, aes(age, bckwds_max_length,
   theme_bw()+
   labs(x = "Age", y = "Backwards max length score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$bckwds_max_length[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$bckwds_max_length[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, bckwds_max_length, 
                                    color = Genotype, fill = Genotype)) + 
@@ -928,7 +955,8 @@ plot3 <- ggplot(combo_m, aes(age, bckwds_max_length,
   annotate("point", x = data$age[23], y = data$bckwds_max_length[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$bckwds_max_length[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$bckwds_max_length[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$bckwds_max_length[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$bckwds_max_length[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -974,7 +1002,8 @@ plot2 <- ggplot(combo_f, aes(age, RAVLT_FORGETTING,
   theme_bw()+
   labs(x = "Age", y = "RAVLT forgetting score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$RAVLT_FORGETTING[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$RAVLT_FORGETTING[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, RAVLT_FORGETTING, 
                                    color = Genotype, fill = Genotype)) + 
@@ -989,7 +1018,8 @@ plot3 <- ggplot(combo_m, aes(age, RAVLT_FORGETTING,
   annotate("point", x = data$age[23], y = data$RAVLT_FORGETTING[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$RAVLT_FORGETTING[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$RAVLT_FORGETTING[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$RAVLT_FORGETTING[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$RAVLT_FORGETTING[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1036,7 +1066,8 @@ plot2 <- ggplot(combo_f, aes(age, RAVLT_LEARNING,
   theme_bw()+
   labs(x = "Age", y = "RAVLT learning score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$RAVLT_LEARNING[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$RAVLT_LEARNING[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, RAVLT_LEARNING, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1051,7 +1082,8 @@ plot3 <- ggplot(combo_m, aes(age, RAVLT_LEARNING,
   annotate("point", x = data$age[23], y = data$RAVLT_LEARNING[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$RAVLT_LEARNING[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$RAVLT_LEARNING[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$RAVLT_LEARNING[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$RAVLT_LEARNING[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1098,7 +1130,8 @@ plot2 <- ggplot(combo_f, aes(age, RAVLT_IMMEDIATE,
   theme_bw()+
   labs(x = "Age", y = "RAVLT immediate score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$RAVLT_IMMEDIATE[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$RAVLT_IMMEDIATE[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, RAVLT_IMMEDIATE, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1113,7 +1146,8 @@ plot3 <- ggplot(combo_m, aes(age, RAVLT_IMMEDIATE,
   annotate("point", x = data$age[23], y = data$RAVLT_IMMEDIATE[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$RAVLT_IMMEDIATE[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$RAVLT_IMMEDIATE[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$RAVLT_IMMEDIATE[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$RAVLT_IMMEDIATE[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1160,7 +1194,8 @@ plot2 <- ggplot(combo_f, aes(age, AVLT_Trial7,
   theme_bw()+
   labs(x = "Age", y = "AVLT Trial 7 (delayed) score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$AVLT_Trial7[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$AVLT_Trial7[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, AVLT_Trial7, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1175,7 +1210,8 @@ plot3 <- ggplot(combo_m, aes(age, AVLT_Trial7,
   annotate("point", x = data$age[23], y = data$AVLT_Trial7[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$AVLT_Trial7[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$AVLT_Trial7[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$AVLT_Trial7[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$AVLT_Trial7[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1222,7 +1258,8 @@ plot2 <- ggplot(combo_f, aes(age, Composite_Pleasantness,
   theme_bw()+
   labs(x = "Age", y = "Composite pleasantness score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$Composite_Pleasantness[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$Composite_Pleasantness[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, Composite_Pleasantness, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1237,7 +1274,8 @@ plot3 <- ggplot(combo_m, aes(age, Composite_Pleasantness,
   annotate("point", x = data$age[23], y = data$Composite_Pleasantness[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$Composite_Pleasantness[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$Composite_Pleasantness[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$Composite_Pleasantness[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$Composite_Pleasantness[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1284,7 +1322,8 @@ plot2 <- ggplot(combo_f, aes(age, Composite_Intensity,
   theme_bw()+
   labs(x = "Age", y = "Composite intensity score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$Composite_Intensity[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$Composite_Intensity[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, Composite_Intensity, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1299,7 +1338,8 @@ plot3 <- ggplot(combo_m, aes(age, Composite_Intensity,
   annotate("point", x = data$age[23], y = data$Composite_Intensity[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$Composite_Intensity[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$Composite_Intensity[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$Composite_Intensity[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$Composite_Intensity[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1346,7 +1386,8 @@ plot2 <- ggplot(combo_f, aes(age, Composite_Familiarity,
   theme_bw()+
   labs(x = "Age", y = "Composite familiarity score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$Composite_Familiarity[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$Composite_Familiarity[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, Composite_Familiarity, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1361,7 +1402,8 @@ plot3 <- ggplot(combo_m, aes(age, Composite_Familiarity,
   annotate("point", x = data$age[23], y = data$Composite_Familiarity[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$Composite_Familiarity[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$Composite_Familiarity[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$Composite_Familiarity[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$Composite_Familiarity[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1408,7 +1450,8 @@ plot2 <- ggplot(combo_f, aes(age, Composite_Nameability,
   theme_bw()+
   labs(x = "Age", y = "Composite nameability score", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$ufov1[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$ufov1[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, Composite_Nameability, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1423,7 +1466,8 @@ plot3 <- ggplot(combo_m, aes(age, Composite_Nameability,
   annotate("point", x = data$age[23], y = data$Composite_Nameability[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$Composite_Nameability[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$Composite_Nameability[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$Composite_Nameability[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$Composite_Nameability[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1469,7 +1513,8 @@ plot2 <- ggplot(combo_f, aes(age, Recognized,
   theme_bw()+
   labs(x = "Age", y = "Percent correctly recognized", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$Recognized[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$Recognized[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, Recognized, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1484,8 +1529,9 @@ plot3 <- ggplot(combo_m, aes(age, Recognized,
   annotate("point", x = data$age[23], y = data$Recognized[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$Recognized[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$Recognized[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$Recognized[58], colour = "darkgreen", shape = 9)
-
+  annotate("point", x = data$age[58], y = data$Recognized[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
+ 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
   draw_plot(plot2, 0, 0, 0.5, .5) +
@@ -1531,7 +1577,8 @@ plot2 <- ggplot(combo_f, aes(age, PrecentCorrectRecall,
   theme_bw()+
   labs(x = "Age", y = "Percent correct recall", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$PrecentCorrectRecall[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$PrecentCorrectRecall[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, PrecentCorrectRecall, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1546,7 +1593,8 @@ plot3 <- ggplot(combo_m, aes(age, PrecentCorrectRecall,
   annotate("point", x = data$age[23], y = data$PrecentCorrectRecall[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$PrecentCorrectRecall[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$PrecentCorrectRecall[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$PrecentCorrectRecall[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$PrecentCorrectRecall[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1594,7 +1642,8 @@ plot2 <- ggplot(combo_f, aes(age, Delay_BensonTotal,
   theme_bw()+
   labs(x = "Age", y = "Total delayed Benson scores", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$Delay_BensonTotal[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$Delay_BensonTotal[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, Delay_BensonTotal, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1609,7 +1658,8 @@ plot3 <- ggplot(combo_m, aes(age, Delay_BensonTotal,
   annotate("point", x = data$age[23], y = data$Delay_BensonTotal[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$Delay_BensonTotal[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$Delay_BensonTotal[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$Delay_BensonTotal[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$Delay_BensonTotal[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1656,7 +1706,8 @@ plot2 <- ggplot(combo_f, aes(age, Im_BensonTotal,
   theme_bw()+
   labs(x = "Age", y = "Immediate delayed Benson scores", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$Im_BensonTotal[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$Im_BensonTotal[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, Im_BensonTotal, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1671,7 +1722,8 @@ plot3 <- ggplot(combo_m, aes(age, Im_BensonTotal,
   annotate("point", x = data$age[23], y = data$Im_BensonTotal[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$Im_BensonTotal[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$Im_BensonTotal[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$Im_BensonTotal[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$Im_BensonTotal[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1718,7 +1770,8 @@ plot2 <- ggplot(combo_f, aes(age, Delayed_verbatim,
   theme_bw()+
   labs(x = "Age", y = "Story delayed verbatim scores", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$Delayed_verbatim[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$Delayed_verbatim[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, Delayed_verbatim, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1733,7 +1786,8 @@ plot3 <- ggplot(combo_m, aes(age, Delayed_verbatim,
   annotate("point", x = data$age[23], y = data$Delayed_verbatim[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$Delayed_verbatim[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$Delayed_verbatim[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$Delayed_verbatim[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$Delayed_verbatim[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1780,7 +1834,8 @@ plot2 <- ggplot(combo_f, aes(age, Immediate_verbatim,
   theme_bw()+
   labs(x = "Age", y = "Story immediate verbatim scores", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$Immediate_verbatim[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$Immediate_verbatim[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, Immediate_verbatim, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1795,7 +1850,8 @@ plot3 <- ggplot(combo_m, aes(age, Immediate_verbatim,
   annotate("point", x = data$age[23], y = data$Immediate_verbatim[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$Immediate_verbatim[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$Immediate_verbatim[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$Immediate_verbatim[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$Immediate_verbatim[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1843,7 +1899,8 @@ plot2 <- ggplot(combo_f, aes(age, MOCA_Attention_Digits,
   theme_bw()+
   labs(x = "Age", y = "MOCA attention digits scores", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$MOCA_Attention_Digits[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$MOCA_Attention_Digits[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, MOCA_Attention_Digits, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1858,7 +1915,8 @@ plot3 <- ggplot(combo_m, aes(age, MOCA_Attention_Digits,
   annotate("point", x = data$age[23], y = data$MOCA_Attention_Digits[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$MOCA_Attention_Digits[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$MOCA_Attention_Digits[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$MOCA_Attention_Digits[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$MOCA_Attention_Digits[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1906,7 +1964,8 @@ plot2 <- ggplot(combo_f, aes(age, MOCA_Memory,
   theme_bw()+
   labs(x = "Age", y = "MOCA memory scores", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$ufov1[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$ufov1[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, MOCA_Memory, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1921,7 +1980,8 @@ plot3 <- ggplot(combo_m, aes(age, MOCA_Memory,
   annotate("point", x = data$age[23], y = data$MOCA_Memory[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$MOCA_Memory[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$MOCA_Memory[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$MOCA_Memory[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$MOCA_Memory[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -1968,7 +2028,8 @@ plot2 <- ggplot(combo_f, aes(age, MOCA_Naming,
   theme_bw()+
   labs(x = "Age", y = "MOCA naming scores", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$MOCA_Naming[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$MOCA_Naming[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, MOCA_Naming, 
                                    color = Genotype, fill = Genotype)) + 
@@ -1983,7 +2044,8 @@ plot3 <- ggplot(combo_m, aes(age, MOCA_Naming,
   annotate("point", x = data$age[23], y = data$MOCA_Naming[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$MOCA_Naming[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$MOCA_Naming[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$MOCA_Naming[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$MOCA_Naming[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -2030,7 +2092,8 @@ plot2 <- ggplot(combo_f, aes(age, MOCA_Visuospatial,
   theme_bw()+
   labs(x = "Age", y = "MOCA visuospatial scores", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$MOCA_Visuospatial[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$MOCA_Visuospatial[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, MOCA_Visuospatial, 
                                    color = Genotype, fill = Genotype)) + 
@@ -2045,7 +2108,8 @@ plot3 <- ggplot(combo_m, aes(age, MOCA_Visuospatial,
   annotate("point", x = data$age[23], y = data$MOCA_Visuospatial[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$MOCA_Visuospatial[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$MOCA_Visuospatial[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$MOCA_Visuospatial[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$MOCA_Visuospatial[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
@@ -2092,7 +2156,8 @@ plot2 <- ggplot(combo_f, aes(age, MOCA_TOTAL,
   theme_bw()+
   labs(x = "Age", y = "MOCA total scores", title = "Female") +
   theme(legend.position="none") +
-  annotate("point", x = data$age[49], y = data$MOCA_TOTAL[49], colour = "blue", shape = 8)
+  annotate("point", x = data$age[49], y = data$MOCA_TOTAL[49], colour = "blue", shape = 8) +
+  xlim(20,80)
 
 plot3 <- ggplot(combo_m, aes(age, MOCA_TOTAL, 
                                    color = Genotype, fill = Genotype)) + 
@@ -2107,7 +2172,8 @@ plot3 <- ggplot(combo_m, aes(age, MOCA_TOTAL,
   annotate("point", x = data$age[23], y = data$MOCA_TOTAL[23], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[54], y = data$MOCA_TOTAL[54], colour = "darkgreen", shape = 9) +
   annotate("point", x = data$age[56], y = data$MOCA_TOTAL[56], colour = "darkgreen", shape = 9) +
-  annotate("point", x = data$age[58], y = data$MOCA_TOTAL[58], colour = "darkgreen", shape = 9)
+  annotate("point", x = data$age[58], y = data$MOCA_TOTAL[58], colour = "darkgreen", shape = 9) +
+  xlim(20,80)
 
 ggdraw() + 
   draw_plot(plot1, 0, .5, 1, .5) +
